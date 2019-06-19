@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package freelance;
-
+import java.sql.*;
+import model.ConnectionDb;
+import model.Persist;
+import model.Usuario;
 /**
  *
  * @author lucas
@@ -14,10 +17,17 @@ public class PerfilPessoal extends javax.swing.JPanel {
     /**
      * Creates new form PerfilPessoal
      */
+    
+    private ConnectionDb cdb = new ConnectionDb();
     public PerfilPessoal() {
         initComponents();
+        txtNome.setText(Persist.getPerfilModel().getNome());
+        txtEmail.setText(Persist.getUser().getEmail());
+        
     }
-
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,45 +38,45 @@ public class PerfilPessoal extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtCEP = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtCidade = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboUF = new javax.swing.JComboBox<>();
         desbloquearToggleButton = new javax.swing.JToggleButton();
         descartarButton = new javax.swing.JButton();
         salvarButton = new javax.swing.JButton();
 
         jLabel1.setText("Nome: ");
 
-        jTextField1.setEditable(false);
-        jTextField1.setPreferredSize(new java.awt.Dimension(90, 32));
+        txtNome.setEditable(false);
+        txtNome.setPreferredSize(new java.awt.Dimension(90, 32));
 
-        jLabel2.setText("Nome: ");
+        jLabel2.setText("Email:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setPreferredSize(new java.awt.Dimension(90, 32));
+        txtEmail.setEditable(false);
+        txtEmail.setPreferredSize(new java.awt.Dimension(90, 32));
 
-        jTextField3.setEditable(false);
-        jTextField3.setPreferredSize(new java.awt.Dimension(90, 32));
+        txtCEP.setEditable(false);
+        txtCEP.setPreferredSize(new java.awt.Dimension(90, 32));
 
         jLabel3.setText("CEP:");
 
-        jTextField4.setEditable(false);
-        jTextField4.setPreferredSize(new java.awt.Dimension(90, 32));
+        txtCidade.setEditable(false);
+        txtCidade.setPreferredSize(new java.awt.Dimension(90, 32));
 
         jLabel4.setText("Cidade:");
 
         jLabel5.setText("UF:");
 
-        jComboBox1.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "RJ", "MG", "SC" }));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(60, 31));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(50, 32));
+        comboUF.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
+        comboUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "RJ", "MG", "SC" }));
+        comboUF.setMinimumSize(new java.awt.Dimension(60, 31));
+        comboUF.setPreferredSize(new java.awt.Dimension(50, 32));
 
         desbloquearToggleButton.setText("Desbloquear");
         desbloquearToggleButton.addItemListener(new java.awt.event.ItemListener() {
@@ -96,23 +106,23 @@ public class PerfilPessoal extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboUF, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(desbloquearToggleButton)
@@ -127,17 +137,17 @@ public class PerfilPessoal extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
@@ -167,18 +177,18 @@ public class PerfilPessoal extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboUF;
     private javax.swing.JToggleButton desbloquearToggleButton;
     private javax.swing.JButton descartarButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton salvarButton;
+    private javax.swing.JTextField txtCEP;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

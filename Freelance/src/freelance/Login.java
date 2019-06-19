@@ -5,6 +5,11 @@
  */
 package freelance;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.LoginModel;
+
 /**
  *
  * @author lucas
@@ -46,8 +51,18 @@ public class Login extends javax.swing.JFrame {
         esqueceuSenhaLabel.setText("Esqueceu a senha?");
 
         cadastrarButton.setText("Cadastrar");
+        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarButtonActionPerformed(evt);
+            }
+        });
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +109,26 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        LoginModel lm = new LoginModel();
+        if(lm.login(emailTextField.getText(), senhaPasswordField.getText())){
+            this.setVisible(false);
+            Freelance f = new Freelance();    
+            f.setVisible(true);
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        try {
+            this.setVisible(false);
+            CriarConta cc = new CriarConta();
+            cc.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     /**
      * @param args the command line arguments

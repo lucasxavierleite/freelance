@@ -16,6 +16,7 @@ public class PerfilProfissional extends javax.swing.JPanel {
      */
     public PerfilProfissional() {
         initComponents();
+        
     }
 
     /**
