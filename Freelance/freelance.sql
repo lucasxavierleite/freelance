@@ -5,9 +5,18 @@ CREATE TABLE perfil(
     name varchar(50) not null,
     birthday varchar(10) not null,
     cpf_cnpj varchar(20) not null,
+    cep varchar(9),
+    cidade varchar(50),
+    escolaridade varchar(30),
+    anoFormacao int,
+    especializacao varchar(50),
+    areaAtuacao varchar(50),
+    experiencias varchar(1000),
+    motivacao varchar(1000),
     primary key (cpf_cnpj),
     university varchar(50),
-    professionalDesc varchar(1000)
+    professionalDesc varchar(1000),
+    estado varchar(2)
 );
 
 CREATE TABLE usuario(
@@ -26,10 +35,15 @@ CREATE TABLE servico(
     dataAnuncio date not null,
     cidade varchar(20) not null,
     estado char(2) not null,
-    emailUsuario varchar(50) not null,
+    emailEmpresa varchar(50) not null,
+    valor float not null,
+    entrega varchar(10) not null,
     id int auto_increment not null,
+    presenca boolean,
+    transporte boolean,
+    categorias varchar(1000),
     primary key (id),
-    FOREIGN KEY (emailUsuario) REFERENCES usuario(email)
+    FOREIGN KEY (emailEmpresa) REFERENCES usuario(email)
 );
 
 CREATE TABLE proposta(
@@ -53,7 +67,7 @@ CREATE TABLE mensagem(
 INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
 INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (1, 'aaa@aaa.com', 'aaa', '37855424881');
 use freelance;
-SELECT * from usuario;
+SELECT * from perfil;
 
 /*
 DELETE FROM mysql.user WHERE User = 'freelanceAdm';

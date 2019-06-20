@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -11,13 +14,14 @@ package model;
  */
 public abstract class Persist {
     private static Usuario user;
-    private static PerfilModel pm;
-
-    public static PerfilModel getPerfilModel() {
+    private static Perfil pm;
+    private static List<Servico> listServico = new ArrayList<>();
+    
+    public static Perfil getPerfilModel() {
         return pm;
     }
 
-    public static void setPerfilModel(PerfilModel pm) {
+    public static void setPerfilModel(Perfil pm) {
         Persist.pm = pm;
     }
     
@@ -27,6 +31,10 @@ public abstract class Persist {
 
     public static void setUser(Usuario user) {
         Persist.user = user;
+    }
+
+    public static List<Servico> getListServico() {
+        return listServico;
     }
     
 }

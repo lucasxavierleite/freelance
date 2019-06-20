@@ -1,11 +1,14 @@
 
 package model;
 
+import controller.Usuario;
+import controller.Persist;
+import controller.Perfil;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import freelance.Freelance;
+import view.Freelance;
 /**
  *
  * @author daniel
@@ -17,15 +20,27 @@ public class LoginModel {
     public boolean login(String email, String senha){
         SecurePassword sp = new SecurePassword();
         String secPass = sp.securePassword(senha);
-        System.out.println(secPass);
         ResultSet rs = connDb.selectQuery("SELECT * FROM usuario WHERE email='"+email+"' AND password='"+secPass+"'");
         try {
             if(rs.next()){
                 user = new Usuario(rs.getInt("permission"),rs.getString("cpf_cnpj"), email, senha);
                 rs = connDb.selectQuery("SELECT * FROM perfil where cpf_cnpj='"+user.getCpf_cnpj()+"'");
-                PerfilModel pm;
+                Perfil pm;
                 if(rs.next()){
-                    pm = new PerfilModel(rs.getString("name"), rs.getString("cpf_cnpj"), rs.getString("university"), rs.getString("professionalDesc"), rs.getString("birthday"));
+                    pm = new Perfil(rs.getString("name"),
+                            rs.getString("cpf_cnpj"),
+                            rs.getString("university"),
+                            rs.getString("professionalDesc"),
+                            rs.getString("birthday"), 
+                            rs.getString("escolaridade"),
+                            rs.getString("cidade"),
+                            rs.getString("cep"),
+                            rs.getString("experiencias"),
+                            rs.getString("motivacao"),
+                            rs.getString("especializacao"),
+                            rs.getString("areaAtuacao"),
+                            rs.getInt("anoFormacao"),
+                            rs.getString("estado"));
                     Persist.setPerfilModel(pm);
                 }
                 Persist.setUser(user);

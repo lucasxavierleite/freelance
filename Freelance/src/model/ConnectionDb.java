@@ -40,6 +40,10 @@ public class ConnectionDb {
         return rs;
     }
     
+    /**
+     *
+     * @param query
+     */
     public void insertQuery(String query){
         try {
             connectDb();
