@@ -309,7 +309,7 @@ public class Notificacao extends javax.swing.JFrame {
     }
     
     private int id;
-    private Servico servico;
+    private ServicoFrame servico;
 
     public int getId() {
         return id;
@@ -319,11 +319,11 @@ public class Notificacao extends javax.swing.JFrame {
         this.id = id;
     }
 
-    public Servico getServico() {
+    public ServicoFrame getServico() {
         return servico;
     }
 
-    public void setServico(Servico servico) {
+    public void setServico(ServicoFrame servico) {
         this.servico = servico;
     }
 }

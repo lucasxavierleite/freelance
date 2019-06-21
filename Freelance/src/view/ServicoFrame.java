@@ -9,12 +9,12 @@ package view;
  *
  * @author lucas
  */
-public class Servico extends javax.swing.JFrame {
+public class ServicoFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form Empresa
+     * Creates new form EmpresaFrame
      */
-    public Servico() {
+    public ServicoFrame() {
         initComponents();
     }
 
@@ -152,20 +152,23 @@ public class Servico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Empresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpresaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Empresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpresaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Empresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpresaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Empresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpresaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empresa().setVisible(true);
+                new EmpresaFrame().setVisible(true);
             }
         });
     }
@@ -189,7 +192,7 @@ public class Servico extends javax.swing.JFrame {
     private String nome;
     private int areaDeAtuacaoId;
     private String descricao;
-    private Empresa empresa;
+    private EmpresaFrame empresa;
 
     public int getId() {
         return id;
@@ -223,11 +226,11 @@ public class Servico extends javax.swing.JFrame {
         this.descricao = descricao;
     }
     
-    public Empresa getEmpresa() {
+    public EmpresaFrame getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
+    public void setEmpresa(EmpresaFrame empresa) {
         this.empresa = empresa;
     }
     

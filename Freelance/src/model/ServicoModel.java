@@ -16,6 +16,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import controller.Servico;
+import javax.swing.JOptionPane;
 
 public class ServicoModel {
     private ConnectionDb cdb;
@@ -31,9 +32,10 @@ public class ServicoModel {
     public void populateServicos() {
         try {
             for(Empresa empresa : Persist.getListEmpresas()) {
-                String query = "SELECT * FROM servico WHERE emailEmpresa = '" + empresa.getUsuario().getEmail() + "' ORDER BY categorias)";
+                String query = "SELECT * FROM servico WHERE emailEmpresa = '" + empresa.getUsuario().getEmail() + "' ORDER BY categorias";
                 ResultSet rs = cdb.selectQuery(query);
-                while(rs.next()){
+                
+                while(rs.next()) {
                     Servico serv = new Servico(
                             rs.getString("descricao"),
                             rs.getString("servico"),
@@ -48,7 +50,7 @@ public class ServicoModel {
                             rs.getBoolean("transporte"),
                             rs.getInt("id")
                     );
-
+                    
                     empresa.getListServicos().add(serv);
                 }
             }

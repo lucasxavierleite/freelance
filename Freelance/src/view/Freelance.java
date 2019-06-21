@@ -21,18 +21,17 @@ import model.ConnectionDb;
 import model.EmpresaModel;
 import model.ServicoModel;
 import model.UsuarioModel;
-
+import controller.Empresa;
+import controller.Servico;
 
 /**
  *
  * @author lucas
  */
 public class Freelance extends javax.swing.JFrame {
-
     /**
      * Creates new form Main
      */
-    
     
     public Freelance() {
         initComponents();
@@ -224,54 +223,6 @@ public class Freelance extends javax.swing.JFrame {
         empresasOrdenacaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Área 1");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Área 2");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 5");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Área 3");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Área 4");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Área 5");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 5");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 6");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         empresasTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         empresasTree.setLargeModel(true);
         empresasTree.setRootVisible(false);
@@ -428,54 +379,6 @@ public class Freelance extends javax.swing.JFrame {
         servicosOrdenacaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 4");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 5");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 6");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         servicosTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         servicosTree.setLargeModel(true);
         servicosTree.setRootVisible(false);
@@ -663,27 +566,23 @@ public class Freelance extends javax.swing.JFrame {
 
         temp = new Notificacao();
         temp.setId(1);
-        temp.setServico(new Servico());
+        temp.setServico(new ServicoFrame());
         notificacoesPanel.add(temp.getContentPane());
 
         temp = new Notificacao();
         temp.setId(2);
-        temp.setServico(new Servico());
+        temp.setServico(new ServicoFrame());
         temp.getTituloLabel().setText("Empresa 2: Serviço 1");
         notificacoesPanel.add(temp.getContentPane());
 
         temp = new Notificacao();
         temp.setId(3);
-        temp.setServico(new Servico());
+        temp.setServico(new ServicoFrame());
         temp.getTituloLabel().setText("Empresa 3: Serviço 4");
         notificacoesPanel.add(temp.getContentPane());
         
         /* FIM DO TESTE */
-
-//        carregarNotificacoes();
-        expandirArvore(servicosTree);
-        expandirArvore(empresasTree);
-                
+               
         ConnectionDb cdb = new ConnectionDb();
         
         UsuarioModel um = new UsuarioModel(cdb);
@@ -696,6 +595,10 @@ public class Freelance extends javax.swing.JFrame {
         sm.populateServicos();
         
         carregarArvore(servicosTree, Persist.getListEmpresas());
+        
+//        carregarNotificacoes();
+        expandirArvore(servicosTree);
+        expandirArvore(empresasTree);
     }//GEN-LAST:event_formWindowOpened
 
     private void carregarNotificacoes() {
@@ -704,7 +607,7 @@ public class Freelance extends javax.swing.JFrame {
         // Para cada resultado:
 
 //        Notificacao n = new Notificacao();
-//        Servico servico = new Servico();
+//        ServicoFrame servico = new ServicoFrame();
 //        servico.setNome(nome);
 //        servico. ..
 //        n.setId(id);
@@ -731,16 +634,16 @@ public class Freelance extends javax.swing.JFrame {
             
             if(grupo instanceof Empresa) {
                 Empresa empresa = (Empresa) grupo;
-                noPai = new DefaultMutableTreeNode(empresa.getNome());
+                noPai = new DefaultMutableTreeNode(empresa.getUsuario().getPerfil().getNome());
             
                 root.add(noPai);
 
-                for(Object dado : empresa.getServicosList()) {
+                for(Object dado : empresa.getListServicos()) {
                     DefaultMutableTreeNode noFilho = null;
 
                     if(dado instanceof Servico) {
                         Servico servico = (Servico) dado;
-                        noFilho = new DefaultMutableTreeNode(servico.getNome());
+                        noFilho = new DefaultMutableTreeNode(servico.getServico());
                     }
 
                     noPai.add(noFilho);
@@ -771,7 +674,6 @@ public class Freelance extends javax.swing.JFrame {
         
         new Freelance().setVisible(true);   
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu ajudaMenu;

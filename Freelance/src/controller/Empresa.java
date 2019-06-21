@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Empresa {
     private Usuario usuario;
-    private static List<Servico> listServicos = new ArrayList<>();
+    private List<Servico> listServicos = new ArrayList<>();
 
     public Empresa(Usuario usuario) {
         this.usuario = usuario;
@@ -24,7 +24,7 @@ public class Empresa {
         return usuario;
     }
    
-    public static List<Servico> getListServicos() {
+    public List<Servico> getListServicos() {
         return listServicos;
     }
 }
