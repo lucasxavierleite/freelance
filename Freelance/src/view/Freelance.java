@@ -726,22 +726,7 @@ public class Freelance extends javax.swing.JFrame {
     }
     
     public static void main(String[] args) {
-        try {
-            for(LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("GTK+".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
         new Freelance().setVisible(true);   
     }

@@ -5,7 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>Freelance</name>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.dir" name="/home/daniel/Desktop/3o semestre/POO/freelance/Freelance"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
