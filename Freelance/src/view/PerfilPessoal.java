@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package view;
-import java.sql.*;
 import model.ConnectionDb;
 import controller.Persist;
 import controller.Usuario;
+import model.PerfilPessoalModel;
 /**
  *
  * @author lucas
@@ -21,10 +21,10 @@ public class PerfilPessoal extends javax.swing.JPanel {
     private ConnectionDb cdb = new ConnectionDb();
     public PerfilPessoal() {
         initComponents();
-//        txtNome.setText(Persist.getPerfilModel().getNome());
-//        txtEmail.setText(Persist.getUser().getEmail());
-//        txtCEP.setText(Persist.getPerfilModel().getCep());
-//        txtCidade.setText(Persist.getPerfilModel().getCidade());
+        txtNome.setText(Persist.getPerfilModel().getNome());
+        txtEmail.setText(Persist.getUser().getEmail());
+        txtCEP.setText(Persist.getPerfilModel().getCep());
+        txtCidade.setText(Persist.getPerfilModel().getCidade());
         
     }
     
@@ -76,7 +76,7 @@ public class PerfilPessoal extends javax.swing.JPanel {
         jLabel5.setText("UF:");
 
         comboUF.setFont(new java.awt.Font("Cantarell", 0, 12)); // NOI18N
-        comboUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP", "RJ", "MG", "SC" }));
+        comboUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         comboUF.setMinimumSize(new java.awt.Dimension(60, 31));
         comboUF.setPreferredSize(new java.awt.Dimension(50, 32));
 
@@ -166,15 +166,30 @@ public class PerfilPessoal extends javax.swing.JPanel {
             desbloquearToggleButton.setText("Bloquear");
             descartarButton.setEnabled(true);
             salvarButton.setEnabled(true);
+            comboUF.setEnabled(true);
+            txtCEP.setEnabled(true);
+            txtCEP.setEditable(true);
+            txtCidade.setEditable(true);
+            txtNome.setEditable(true);
         } else {
             desbloquearToggleButton.setText("Desbloquear");
             descartarButton.setEnabled(false);
             salvarButton.setEnabled(false);
+            comboUF.setEnabled(false);
+            txtCEP.setEditable(false);
+            txtCidade.setEditable(false);
+            txtNome.setEditable(false);
         }
     }//GEN-LAST:event_desbloquearToggleButtonItemStateChanged
 
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
         desbloquearToggleButton.setSelected(false);
+        PerfilPessoalModel ppm = new PerfilPessoalModel();
+        Persist.getPerfilModel().setNome(txtNome.getText());
+        Persist.getPerfilModel().setCep(txtCEP.getText());
+        Persist.getPerfilModel().setCidade(txtCidade.getText());
+        Persist.getPerfilModel().setEstado(comboUF.getSelectedItem().toString());
+        ppm.updatePerfilPessoal();
     }//GEN-LAST:event_salvarButtonActionPerformed
 
 

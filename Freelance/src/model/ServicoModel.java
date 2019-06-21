@@ -10,13 +10,12 @@ package model;
  * @author daniel
  */
 
-import controller.Empresa;
+import controller.EmpresaController;
 import controller.Persist;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import controller.Servico;
-import javax.swing.JOptionPane;
+import controller.ServicoController;
 
 public class ServicoModel {
     private ConnectionDb cdb;
@@ -31,12 +30,11 @@ public class ServicoModel {
     
     public void populateServicos() {
         try {
-            for(Empresa empresa : Persist.getListEmpresas()) {
+            for(EmpresaController empresa : Persist.getListEmpresas()) {
                 String query = "SELECT * FROM servico WHERE emailEmpresa = '" + empresa.getUsuario().getEmail() + "' ORDER BY categorias";
                 ResultSet rs = cdb.selectQuery(query);
-                
-                while(rs.next()) {
-                    Servico serv = new Servico(
+                while(rs.next()){
+                    ServicoController serv = new ServicoController(
                             rs.getString("descricao"),
                             rs.getString("servico"),
                             rs.getString("dataAnuncio"),
@@ -48,9 +46,10 @@ public class ServicoModel {
                             rs.getFloat("valor"),
                             rs.getBoolean("presenca"),
                             rs.getBoolean("transporte"),
-                            rs.getInt("id")
+                            rs.getInt("id"),
+                            rs.getString("nomeEmpresa")
                     );
-                    
+
                     empresa.getListServicos().add(serv);
                 }
             }

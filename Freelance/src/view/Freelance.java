@@ -5,10 +5,12 @@
  */
 package view;
 
+import controller.EmpresaController;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 import controller.Persist;
+import controller.ServicoController;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,17 +23,19 @@ import model.ConnectionDb;
 import model.EmpresaModel;
 import model.ServicoModel;
 import model.UsuarioModel;
-import controller.Empresa;
-import controller.Servico;
+
+
 
 /**
  *
  * @author lucas
  */
 public class Freelance extends javax.swing.JFrame {
+
     /**
      * Creates new form Main
      */
+    
     
     public Freelance() {
         initComponents();
@@ -89,6 +93,7 @@ public class Freelance extends javax.swing.JFrame {
         servicosOrdenacaoComboBox = new javax.swing.JComboBox<>();
         servicosScrollPane = new javax.swing.JScrollPane();
         servicosTree = new javax.swing.JTree();
+        btnCriaServico = new javax.swing.JButton();
         matchPanel = new javax.swing.JPanel();
         tituloLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -334,7 +339,7 @@ public class Freelance extends javax.swing.JFrame {
                     .addGroup(servicosFiltrosPanelLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(servicosTransporteCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addComponent(servicosMaisButton)
                         .addGap(18, 18, 18)
                         .addComponent(servicosAplicarButton))
@@ -379,6 +384,54 @@ public class Freelance extends javax.swing.JFrame {
         servicosOrdenacaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 4");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 5");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 6");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
         servicosTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         servicosTree.setLargeModel(true);
         servicosTree.setRootVisible(false);
@@ -389,6 +442,13 @@ public class Freelance extends javax.swing.JFrame {
             }
         });
         servicosScrollPane.setViewportView(servicosTree);
+
+        btnCriaServico.setText("Criar Serviço");
+        btnCriaServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriaServicoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout servicosPanelLayout = new javax.swing.GroupLayout(servicosPanel);
         servicosPanel.setLayout(servicosPanelLayout);
@@ -401,9 +461,12 @@ public class Freelance extends javax.swing.JFrame {
                     .addComponent(servicosFiltrosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, servicosPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(servicosOrdenacaoLabel)
-                        .addGap(3, 3, 3)
-                        .addComponent(servicosOrdenacaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(servicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, servicosPanelLayout.createSequentialGroup()
+                                .addComponent(servicosOrdenacaoLabel)
+                                .addGap(3, 3, 3)
+                                .addComponent(servicosOrdenacaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCriaServico, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         servicosPanelLayout.setVerticalGroup(
@@ -411,7 +474,9 @@ public class Freelance extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, servicosPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(servicosFiltrosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCriaServico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(servicosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(servicosOrdenacaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(servicosOrdenacaoLabel))
@@ -582,7 +647,11 @@ public class Freelance extends javax.swing.JFrame {
         notificacoesPanel.add(temp.getContentPane());
         
         /* FIM DO TESTE */
-               
+
+//        carregarNotificacoes();
+        expandirArvore(servicosTree);
+        expandirArvore(empresasTree);
+                
         ConnectionDb cdb = new ConnectionDb();
         
         UsuarioModel um = new UsuarioModel(cdb);
@@ -594,12 +663,15 @@ public class Freelance extends javax.swing.JFrame {
         ServicoModel sm = new ServicoModel(cdb);
         sm.populateServicos();
         
-        carregarArvore(servicosTree, Persist.getListEmpresas());
+        carregarArvore(empresasTree, Persist.getListEmpresas());
         
-//        carregarNotificacoes();
-        expandirArvore(servicosTree);
-        expandirArvore(empresasTree);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCriaServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriaServicoActionPerformed
+        CriarServico cs = new CriarServico();
+        this.setVisible(false);
+        cs.setVisible(true);
+    }//GEN-LAST:event_btnCriaServicoActionPerformed
 
     private void carregarNotificacoes() {
         // Buscar no banco de dados
@@ -607,7 +679,7 @@ public class Freelance extends javax.swing.JFrame {
         // Para cada resultado:
 
 //        Notificacao n = new Notificacao();
-//        ServicoFrame servico = new ServicoFrame();
+//        Servico servico = new Servico();
 //        servico.setNome(nome);
 //        servico. ..
 //        n.setId(id);
@@ -627,23 +699,21 @@ public class Freelance extends javax.swing.JFrame {
     
     private void carregarArvore(JTree arvore, List grupos) {
         DefaultTreeModel model = (DefaultTreeModel) arvore.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) arvore.getModel().getRoot();
                
         for(Object grupo : grupos) {
             DefaultMutableTreeNode noPai = null;
             
-            if(grupo instanceof Empresa) {
-                Empresa empresa = (Empresa) grupo;
-                noPai = new DefaultMutableTreeNode(empresa.getUsuario().getPerfil().getNome());
-            
+            if(grupo instanceof controller.EmpresaController) {
+                EmpresaController empresa = (EmpresaController) grupo;
+                noPai = new DefaultMutableTreeNode(empresa.getUsuario().getPerfil().getNome());                    
                 root.add(noPai);
-
-                for(Object dado : empresa.getListServicos()) {
+                for(Object dado : empresa.getListServicos()){
                     DefaultMutableTreeNode noFilho = null;
 
-                    if(dado instanceof Servico) {
-                        Servico servico = (Servico) dado;
-                        noFilho = new DefaultMutableTreeNode(servico.getServico());
+                    if(dado instanceof ServicoController) {
+                        ServicoController servico = (ServicoController) dado;
+                        noFilho = new DefaultMutableTreeNode(servico.getEmpresa());
                     }
 
                     noPai.add(noFilho);
@@ -652,6 +722,7 @@ public class Freelance extends javax.swing.JFrame {
         }
         
         model.reload(root);
+        arvore.setModel(model);
     }
     
     public static void main(String[] args) {
@@ -674,10 +745,12 @@ public class Freelance extends javax.swing.JFrame {
         
         new Freelance().setVisible(true);   
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu ajudaMenu;
     private javax.swing.JMenuItem ajudaMenuItem;
+    private javax.swing.JButton btnCriaServico;
     private javax.swing.JButton empresasAplicarButton;
     private javax.swing.JButton empresasBarraBuscaButton;
     private javax.swing.JTextField empresasBarraBuscaTextField;
