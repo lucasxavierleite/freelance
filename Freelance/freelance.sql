@@ -1,9 +1,10 @@
 DROP DATABASE freelance;
 CREATE DATABASE freelance;
 USE freelance;
+
 CREATE TABLE perfil(
     name varchar(50) not null,
-    birthday varchar(10) not null,
+    birthday varchar(10),
     cpf_cnpj varchar(20) not null,
     cep varchar(9),
     cidade varchar(50),
@@ -26,19 +27,18 @@ CREATE TABLE usuario(
      cpf_cnpj varchar(20) not null,
      FOREIGN KEY (cpf_cnpj) REFERENCES perfil(cpf_cnpj),
      primary key (email)
-     
 );
 
 CREATE TABLE servico(
-    descricao varchar(300) not null,
+    descricao varchar(300),
     servico varchar(100) not null,
-    dataAnuncio date not null,
-    cidade varchar(20) not null,
-    estado char(2) not null,
+    dataAnuncio date,
+    cidade varchar(20),
+    estado char(2),
     emailEmpresa varchar(50) not null,
-    valor float not null,
-    entrega varchar(10) not null,
-    id int auto_increment not null,
+    valor float,
+    entrega varchar(10),
+    id int auto_increment,
     presenca boolean,
     transporte boolean,
     categorias varchar(1000),
@@ -64,9 +64,43 @@ CREATE TABLE mensagem(
     filePath varchar(128) not null 
 );
 
-INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
+INSERT INTO perfil(name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
 INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (1, 'aaa@aaa.com', 'aaa', '37855424881');
-use freelance;
+
+INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa1', '89423535135');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'bbb@bbb.com', 'aaa', '89423535135');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço1', 'bbb@bbb.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço2', 'bbb@bbb.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço3', 'bbb@bbb.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço4', 'bbb@bbb.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço5', 'bbb@bbb.com');
+
+INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa2', '46456432434');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'ccc@ccc.com', 'aaa', '46456432434');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço1', 'ccc@ccc.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço2', 'ccc@ccc.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço3', 'ccc@ccc.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço4', 'ccc@ccc.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço5', 'ccc@ccc.com');
+
+INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa3', '12323123123');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'ddd@ddd.com', 'aaa', '12323123123');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço1', 'ddd@ddd.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço2', 'ddd@ddd.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço3', 'ddd@ddd.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço4', 'ddd@ddd.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço5', 'ddd@ddd.com');
+
+INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa4', '54353477455');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'eee@eee.com', 'aaa', '54353477455');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço1', 'eee@eee.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço2', 'eee@eee.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço3', 'eee@eee.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço4', 'eee@eee.com');
+INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço5', 'eee@eee.com');
+
+USE freelance;
+
 SELECT * from perfil;
 
 /*

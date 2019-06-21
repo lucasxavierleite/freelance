@@ -21,10 +21,10 @@ public class PerfilPessoal extends javax.swing.JPanel {
     private ConnectionDb cdb = new ConnectionDb();
     public PerfilPessoal() {
         initComponents();
-        txtNome.setText(Persist.getPerfilModel().getNome());
-        txtEmail.setText(Persist.getUser().getEmail());
-        txtCEP.setText(Persist.getPerfilModel().getCep());
-        txtCidade.setText(Persist.getPerfilModel().getCidade());
+//        txtNome.setText(Persist.getPerfilModel().getNome());
+//        txtEmail.setText(Persist.getUser().getEmail());
+//        txtCEP.setText(Persist.getPerfilModel().getCep());
+//        txtCidade.setText(Persist.getPerfilModel().getCidade());
         
     }
     

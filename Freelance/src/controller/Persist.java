@@ -15,7 +15,9 @@ import java.util.List;
 public abstract class Persist {
     private static Usuario user;
     private static Perfil pm;
-    private static List<Servico> listServico = new ArrayList<>();
+    private static List<Usuario> listUsuarios = new ArrayList<>();
+    private static List<Perfil> listClientes = new ArrayList<>();
+    private static List<Empresa> listEmpresas = new ArrayList<>();
     
     public static Perfil getPerfilModel() {
         return pm;
@@ -33,8 +35,15 @@ public abstract class Persist {
         Persist.user = user;
     }
 
-    public static List<Servico> getListServico() {
-        return listServico;
+    public static List<Usuario> getListUsuarios() {
+        return listUsuarios;
     }
     
+    public static List<Perfil> getListClientes() {
+        return listClientes;
+    }
+    
+    public static List<Empresa> getListEmpresas() {
+        return listEmpresas;
+    }
 }

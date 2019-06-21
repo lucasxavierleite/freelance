@@ -10,6 +10,7 @@ package model;
  * @author daniel
  */
 
+import controller.Empresa;
 import controller.Persist;
 import java.sql.*;
 import java.util.logging.Level;
@@ -19,35 +20,40 @@ import controller.Servico;
 public class ServicoModel {
     private ConnectionDb cdb;
     
-    public void selectServico(){
+    public ServicoModel(ConnectionDb cdb) {
+        this.cdb = cdb;
+    }
+    
+    public void selectServicos() {
         
     }
     
-    public void populateServico(){
+    public void populateServicos() {
         try {
-            ResultSet rs = cdb.selectQuery("SELECT * FROM servico ORDER BY area");
-            while(rs.next()){
-                Servico serv = new Servico(
-                        rs.getString("descricao"),
-                        rs.getString("servico"),
-                        rs.getString("dataAnuncio"),
-                        rs.getString("cidade"),
-                        rs.getString("estado"),
-                        rs.getString("emailEmpresa"),
-                        rs.getString("entrega"),
-                        rs.getString("categorias"),
-                        rs.getFloat("valor"),
-                        rs.getBoolean("presenca"),
-                        rs.getBoolean("transporte"),
-                        rs.getInt("id")
-                );
-                Persist.getListServico().add(serv);
-                
+            for(Empresa empresa : Persist.getListEmpresas()) {
+                String query = "SELECT * FROM servico WHERE emailEmpresa = '" + empresa.getUsuario().getEmail() + "' ORDER BY categorias)";
+                ResultSet rs = cdb.selectQuery(query);
+                while(rs.next()){
+                    Servico serv = new Servico(
+                            rs.getString("descricao"),
+                            rs.getString("servico"),
+                            rs.getString("dataAnuncio"),
+                            rs.getString("cidade"),
+                            rs.getString("estado"),
+                            rs.getString("emailEmpresa"),
+                            rs.getString("entrega"),
+                            rs.getString("categorias"),
+                            rs.getFloat("valor"),
+                            rs.getBoolean("presenca"),
+                            rs.getBoolean("transporte"),
+                            rs.getInt("id")
+                    );
+
+                    empresa.getListServicos().add(serv);
+                }
             }
+            
             cdb.getCon().close();
-            for(Servico s : Persist.getListServico()){
-                
-            }
         } catch (SQLException ex) {
             Logger.getLogger(ServicoModel.class.getName()).log(Level.SEVERE, null, ex);
         }

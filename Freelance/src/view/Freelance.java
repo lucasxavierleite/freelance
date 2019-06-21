@@ -5,14 +5,23 @@
  */
 package view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 import controller.Persist;
-import controller.Usuario;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import model.ConnectionDb;
+import model.EmpresaModel;
+import model.ServicoModel;
+import model.UsuarioModel;
+
 
 /**
  *
@@ -674,6 +683,19 @@ public class Freelance extends javax.swing.JFrame {
 //        carregarNotificacoes();
         expandirArvore(servicosTree);
         expandirArvore(empresasTree);
+                
+        ConnectionDb cdb = new ConnectionDb();
+        
+        UsuarioModel um = new UsuarioModel(cdb);
+        um.populateUsuarios(2);
+        
+        EmpresaModel em = new EmpresaModel(cdb);
+        em.populateEmpresas();
+        
+        ServicoModel sm = new ServicoModel(cdb);
+        sm.populateServicos();
+        
+        carregarArvore(servicosTree, Persist.getListEmpresas());
     }//GEN-LAST:event_formWindowOpened
 
     private void carregarNotificacoes() {
@@ -699,7 +721,56 @@ public class Freelance extends javax.swing.JFrame {
             arvore.expandRow(i);
         }
     }
+    
+    private void carregarArvore(JTree arvore, List grupos) {
+        DefaultTreeModel model = (DefaultTreeModel) arvore.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+               
+        for(Object grupo : grupos) {
+            DefaultMutableTreeNode noPai = null;
+            
+            if(grupo instanceof Empresa) {
+                Empresa empresa = (Empresa) grupo;
+                noPai = new DefaultMutableTreeNode(empresa.getNome());
+            
+                root.add(noPai);
 
+                for(Object dado : empresa.getServicosList()) {
+                    DefaultMutableTreeNode noFilho = null;
+
+                    if(dado instanceof Servico) {
+                        Servico servico = (Servico) dado;
+                        noFilho = new DefaultMutableTreeNode(servico.getNome());
+                    }
+
+                    noPai.add(noFilho);
+                }
+            }
+        }
+        
+        model.reload(root);
+    }
+    
+    public static void main(String[] args) {
+        try {
+            for(LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("GTK+".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Freelance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        new Freelance().setVisible(true);   
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

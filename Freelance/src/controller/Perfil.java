@@ -141,9 +141,15 @@ public class Perfil {
         this.descricaoProf = descricaoProf;
         this.dataNasc = dataNasc;
     }
-
     
-
-    
-    
+    public Perfil(String nome, String cpf_cnpj, String cidade, String cep, String motivacoes, String especializacao, String areaAtuacao, String estado) {
+        this.nome = nome;
+        this.cpf_cnpj = cpf_cnpj;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.motivacoes = motivacoes;
+        this.especializacao = especializacao;
+        this.areaAtuacao = areaAtuacao;
+        this.estado = estado;
+    }
 }

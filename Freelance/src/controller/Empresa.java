@@ -5,10 +5,26 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author daniel
  */
 public class Empresa {
+    private Usuario usuario;
+    private static List<Servico> listServicos = new ArrayList<>();
+
+    public Empresa(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
+    public Usuario getUsuario() {
+        return usuario;
+    }
+   
+    public static List<Servico> getListServicos() {
+        return listServicos;
+    }
 }

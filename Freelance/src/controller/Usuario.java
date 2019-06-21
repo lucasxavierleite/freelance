@@ -11,14 +11,10 @@ package controller;
  */
 public class Usuario {
     private int permissao;
-
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
-    }
-   
-
-    
-    private String email, senha, cpf_cnpj;
+    private String email;
+    private String senha;
+    private String cpf_cnpj;
+    private Perfil perfil;
 
     public Usuario(int permissao, String cpfCnpj, String email, String senha) {
         this.permissao = permissao;
@@ -27,13 +23,16 @@ public class Usuario {
         this.senha = senha;
     }
 
-   
     public int getPermissao() {
         return permissao;
     }
 
     public void setPermissao(int permissao) {
         this.permissao = permissao;
+    }
+    
+    public String getCpf_cnpj() {
+        return cpf_cnpj;
     }
 
     public String getEmail() {
@@ -51,7 +50,12 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+       
+    public Perfil getPerfil() {
+        return perfil;
+    }
     
-        
-    
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
 }
