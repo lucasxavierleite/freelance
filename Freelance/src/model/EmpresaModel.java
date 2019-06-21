@@ -10,7 +10,7 @@ package model;
  * @author lucas
  */
 
-import controller.Empresa;
+import controller.EmpresaController;
 import controller.Perfil;
 import controller.Persist;
 import java.sql.*;
@@ -54,7 +54,7 @@ public class EmpresaModel {
                 );
                 
                 usuario.setPerfil(perfil);
-                Empresa empresa = new Empresa(usuario);
+                EmpresaController empresa = new EmpresaController(usuario);
                 Persist.getListEmpresas().add(empresa);
             }
             

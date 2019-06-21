@@ -14,9 +14,7 @@ import controller.Persist;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import controller.Servico;
 import controller.Usuario;
-import javax.swing.JOptionPane;
 
 public class UsuarioModel {
     private ConnectionDb cdb;

@@ -17,7 +17,7 @@ public abstract class Persist {
     private static Perfil pm;
     private static List<Usuario> listUsuarios = new ArrayList<>();
     private static List<Perfil> listClientes = new ArrayList<>();
-    private static List<Empresa> listEmpresas = new ArrayList<>();
+    private static List<EmpresaController> listEmpresas = new ArrayList<>();
     
     public static Perfil getPerfilModel() {
         return pm;
@@ -43,7 +43,7 @@ public abstract class Persist {
         return listClientes;
     }
     
-    public static List<Empresa> getListEmpresas() {
+    public static List<EmpresaController> getListEmpresas() {
         return listEmpresas;
     }
 }

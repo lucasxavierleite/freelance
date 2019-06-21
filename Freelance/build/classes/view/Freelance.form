@@ -387,7 +387,7 @@
                 <Component class="javax.swing.JTree" name="empresasTree">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code=""/>
+                      <TreeModel code="root&#xa; "/>
                     </Property>
                     <Property name="largeModel" type="boolean" value="true"/>
                     <Property name="rootVisible" type="boolean" value="false"/>
@@ -420,9 +420,14 @@
                           <Component id="servicosFiltrosPanel" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="servicosOrdenacaoLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Component id="servicosOrdenacaoComboBox" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="servicosOrdenacaoLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                      <Component id="servicosOrdenacaoComboBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnCriaServico" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -434,7 +439,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="servicosFiltrosPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnCriaServico" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="servicosOrdenacaoComboBox" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="servicosOrdenacaoLabel" min="-2" max="-2" attributes="0"/>
@@ -481,7 +488,7 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="servicosTransporteCheckBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="107" max="32767" attributes="0"/>
+                                  <EmptySpace pref="89" max="32767" attributes="0"/>
                                   <Component id="servicosMaisButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="servicosAplicarButton" min="-2" max="-2" attributes="0"/>
@@ -651,7 +658,7 @@
                 <Component class="javax.swing.JTree" name="servicosTree">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code=""/>
+                      <TreeModel code="Empresa 1&#xa;  Servi&#xe7;o 1&#xa;  Servi&#xe7;o 2&#xa;  Servi&#xe7;o 3&#xa;Empresa 2&#xa;  Servi&#xe7;o 1&#xa;  Servi&#xe7;o 2&#xa;  Servi&#xe7;o 3&#xa;  Servi&#xe7;o 4&#xa;  Servi&#xe7;o 5&#xa;Empresa 3&#xa;  Servi&#xe7;o 1&#xa;  Servi&#xe7;o 2&#xa;Empresa 4&#xa;  Servi&#xe7;o 1&#xa;  Servi&#xe7;o 2&#xa;  Servi&#xe7;o 3&#xa;Empresa 5&#xa;  Servi&#xe7;o 1&#xa;  Servi&#xe7;o 2&#xa;  Servi&#xe7;o 3&#xa;  Servi&#xe7;o 4&#xa;  Servi&#xe7;o 5&#xa;  Servi&#xe7;o 6"/>
                     </Property>
                     <Property name="largeModel" type="boolean" value="true"/>
                     <Property name="rootVisible" type="boolean" value="false"/>
@@ -663,6 +670,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnCriaServico">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Criar Servi&#xe7;o"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCriaServicoActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="matchPanel">
