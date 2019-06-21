@@ -6,19 +6,14 @@
 package view;
 
 import controller.EmpresaController;
+import controller.NotificacaoController;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 import controller.Persist;
 import controller.ServicoController;
-import controller.Usuario;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import model.ConnectionDb;
@@ -563,8 +558,10 @@ public class Freelance extends javax.swing.JFrame {
             String[] selPathSplit = caminho.toString().split(",");
             int nivel = selPathSplit.length - 1;
             String servicoTitulo = selPathSplit[nivel].trim().replace("]", "");
-            if(nivel == 2)
-                JOptionPane.showMessageDialog(this, "Abrir pop-up do serviço " + servicoTitulo);
+            if(nivel == 2){
+                //ServicoFrame sf = new ServicoFrame(Persist.get);
+            }
+                
         }
     }//GEN-LAST:event_servicosTreeMousePressed
 
@@ -623,14 +620,16 @@ public class Freelance extends javax.swing.JFrame {
 //        }
         NotificacaoModel nm = new NotificacaoModel();
         nm.populateNotificacoes();
-        if(!Persist.getNc().getServicoList().isEmpty()){
-            for(ServicoController s: Persist.getNc().getServicoList()){
-                Notificacao n = new Notificacao(s);
-                n.setId(s.getId());
-                n.setServico(new ServicoFrame(s));
+        if(!Persist.getListNotificacao().isEmpty()){
+            for(NotificacaoController nc : Persist.getListNotificacao()){
+                Notificacao n = new Notificacao(nc.getServicoController(), nc.getEmailRemetente());
+                n.setId(nc.getServicoController().getId());
+                n.setServico(new ServicoFrame(nc.getServicoController()));
                 notificacoesPanel.add(n.getContentPane());
-
             }
+                
+
+            
         }else
             notificacoesPanel.add(new JLabel("Você não tem novas notificações"));
 

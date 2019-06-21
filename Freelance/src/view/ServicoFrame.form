@@ -36,7 +36,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="contatarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="enviarCurriculoButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOferecer" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -99,7 +99,7 @@
               <Component id="descricaoScrollPane" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enviarCurriculoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOferecer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="contatarButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -164,10 +164,13 @@
         <Property name="text" type="java.lang.String" value="Contatar empresa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="enviarCurriculoButton">
+    <Component class="javax.swing.JButton" name="btnOferecer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enviar curr&#xed;culo"/>
+        <Property name="text" type="java.lang.String" value="Ofrecer Servi&#xe7;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOferecerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDescricao">
     </Component>

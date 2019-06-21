@@ -24,7 +24,7 @@ public class NotificacaoModel {
     public void populateNotificacoes(){
         try {
             cdb = new ConnectionDb();
-            ResultSet rs = cdb.selectQuery("SELECT * FROM servico INNER JOIN proposta ON servico.id=proposta.fk_idServico AND proposta.emailDest='"+Persist.getUser().getEmail()+"'");
+            ResultSet rs = cdb.selectQuery("SELECT * FROM servico LEFT JOIN proposta ON servico.id=proposta.fk_idServico AND proposta.emailDest='"+Persist.getUser().getEmail()+"'");
             NotificacaoController nc = new NotificacaoController();
             while(rs.next()){
                 ServicoController sc = new ServicoController(
@@ -40,9 +40,12 @@ public class NotificacaoModel {
                         rs.getInt("id"),
                         rs.getBoolean("presenca"),
                         rs.getBoolean("transporte"));
-                nc.getServicoList().add(sc);
+                nc.setServicoController(sc);
+                nc.setEmailRemetente(rs.getString("emailEnvio"));
             }
-            Persist.setNc(nc);
+            cdb.getCon().close();
+            
+            Persist.getListNotificacao().add(nc);
         } catch (SQLException ex) {
             Logger.getLogger(NotificacaoModel.class.getName()).log(Level.SEVERE, null, ex);
         }

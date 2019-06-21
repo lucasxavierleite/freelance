@@ -1,7 +1,6 @@
 DROP DATABASE freelance;
 CREATE DATABASE freelance;
 USE freelance;
-
 CREATE TABLE perfil(
     name varchar(50) not null,
     birthday varchar(10),
@@ -19,7 +18,6 @@ CREATE TABLE perfil(
     professionalDesc varchar(1000),
     estado varchar(2)
 );
-
 CREATE TABLE usuario(
      permission smallint unsigned not null,
      email varchar(50) not null,
@@ -27,18 +25,20 @@ CREATE TABLE usuario(
      cpf_cnpj varchar(20) not null,
      FOREIGN KEY (cpf_cnpj) REFERENCES perfil(cpf_cnpj),
      primary key (email)
+     
 );
 
 CREATE TABLE servico(
-    descricao varchar(300),
+    descricao varchar(300) not null,
     servico varchar(100) not null,
-    dataAnuncio date,
-    cidade varchar(20),
-    estado char(2),
+    dataAnuncio varchar(10) not null,
+    cidade varchar(20) not null,
+    estado char(2) not null,
     emailEmpresa varchar(50) not null,
-    valor float,
-    entrega varchar(10),
-    id int auto_increment,
+    valor float not null,
+    nomeEmpresa varchar(50) not null,
+    entrega varchar(10) not null,
+    id int auto_increment not null,
     presenca boolean,
     transporte boolean,
     categorias varchar(1000),
@@ -52,7 +52,10 @@ CREATE TABLE proposta(
     FOREIGN KEY (fk_idServico) REFERENCES servico(id),
     emailDest varchar(50) not null,
     FOREIGN KEY (emailDest) REFERENCES usuario(email),
-    primary key(id)
+    primary key(id),
+    emailEnvio varchar(50) not null,
+    FOREIGN KEY (emailEnvio) REFERENCES usuario(email),
+    visualizado boolean
 );
 
 CREATE TABLE mensagem(
@@ -64,44 +67,29 @@ CREATE TABLE mensagem(
     filePath varchar(128) not null 
 );
 
-INSERT INTO perfil(name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
-INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (1, 'aaa@aaa.com', 'aaa', '37855424881');
+CREATE TABLE areaDeAtuacao(
+    id smallint auto_increment not null,
+    nome varchar(200),
+    primary key (id)
+);
 
-INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa1', '89423535135');
-INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'bbb@bbb.com', 'aaa', '89423535135');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço1', 'bbb@bbb.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço2', 'bbb@bbb.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço3', 'bbb@bbb.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço4', 'bbb@bbb.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa1/Serviço5', 'bbb@bbb.com');
+INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (1, 'aaa', 'aaa', '37855424881');
 
-INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa2', '46456432434');
-INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'ccc@ccc.com', 'aaa', '46456432434');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço1', 'ccc@ccc.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço2', 'ccc@ccc.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço3', 'ccc@ccc.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço4', 'ccc@ccc.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa2/Serviço5', 'ccc@ccc.com');
+INSERT INTO servico(descricao,valor,nomeEmpresa, servico, dataAnuncio, cidade, estado, emailEmpresa, entrega, presenca, transporte, categorias)
+VALUES ('test1',5000.00,'da inc', 'test s', '2019-02-02', 'são carlos', 'SP', 'aaa', '07/07/2019', 1, 1, 'tudo');
+INSERT INTO servico(descricao,valor,nomeEmpresa, servico, dataAnuncio, cidade, estado, emailEmpresa, entrega, presenca, transporte, categorias)
+VALUES ('Servico de verdade',10000.00,'AAA', 'testAAAAAA', '2019-02-02', 'são carlos', 'SP', 'aaa', '07/07/2019', 1, 1, 'tudo');
 
-INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa3', '12323123123');
-INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'ddd@ddd.com', 'aaa', '12323123123');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço1', 'ddd@ddd.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço2', 'ddd@ddd.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço3', 'ddd@ddd.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço4', 'ddd@ddd.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa3/Serviço5', 'ddd@ddd.com');
+INSERT INTO proposta(fk_idServico, emailDest,visualizado, emailEnvio) VALUES (1, 'da',0, 'aaa');
+INSERT INTO proposta(fk_idServico, emailDest,visualizado, emailEnvio) VALUES (2, 'da',0, 'aaa');
 
-INSERT INTO perfil(name, cpf_cnpj) VALUES ('DB/Empresa4', '54353477455');
-INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'eee@eee.com', 'aaa', '54353477455');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço1', 'eee@eee.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço2', 'eee@eee.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço3', 'eee@eee.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço4', 'eee@eee.com');
-INSERT INTO servico(servico, emailEmpresa) VALUES ('DB/Empresa4/Serviço5', 'eee@eee.com');
-
-USE freelance;
-
-SELECT * from perfil;
+use freelance;
+SELECT * FROM servico INNER JOIN proposta on servico.id=proposta.fk_idServico AND emailDest='da'
+UNION
+SELECT emailEnvio from proposta RIGHT JOIN servico on proposta.fk_idServico=servico.id;
+SELECT * from proposta;
+SELECT * FROM usuario;
 
 /*
 DELETE FROM mysql.user WHERE User = 'freelanceAdm';
