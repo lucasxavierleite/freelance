@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.ServicoController;
+
 /**
  *
  * @author lucas
@@ -17,7 +19,20 @@ public class ServicoFrame extends javax.swing.JFrame {
     public ServicoFrame() {
         initComponents();
     }
-
+    
+    public ServicoFrame(ServicoController sc){
+        initComponents();
+        categoriasLabel.setText(sc.getCategorias());
+        descricaoTextArea.setText(sc.getDescricao());
+        entregaLabel.setText(sc.getEntrega());
+        valorLabel.setText(String.valueOf(sc.getValor()));
+        transporteCheckBox.setSelected(sc.isTransporte());
+        presencaCheckBox.setSelected(sc.isPresenca());
+        tituloLabel.setText(sc.getServico());
+        lblCidade.setText(sc.getCidade());
+        lblEstado.setText(sc.getEstado());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +44,6 @@ public class ServicoFrame extends javax.swing.JFrame {
 
         tituloLabel = new javax.swing.JLabel();
         valorLabel = new javax.swing.JLabel();
-        distanciaLabel = new javax.swing.JLabel();
         categoriasLabel = new javax.swing.JLabel();
         entregaLabel = new javax.swing.JLabel();
         presencaCheckBox = new javax.swing.JCheckBox();
@@ -39,8 +53,9 @@ public class ServicoFrame extends javax.swing.JFrame {
         contatarButton = new javax.swing.JButton();
         enviarCurriculoButton = new javax.swing.JButton();
         lblDescricao = new javax.swing.JLabel();
+        lblCidade = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setSize(new java.awt.Dimension(800, 600));
 
@@ -48,8 +63,6 @@ public class ServicoFrame extends javax.swing.JFrame {
         tituloLabel.setText("Empresa 1: Sistema de recomendação");
 
         valorLabel.setText("Valor: R$ 8.260,00");
-
-        distanciaLabel.setText("Distância: 48,4 km");
 
         categoriasLabel.setText("Categorias: Computação, Desenvolvimento Web, Sistemas de recomendação");
 
@@ -69,6 +82,10 @@ public class ServicoFrame extends javax.swing.JFrame {
         contatarButton.setText("Contatar empresa");
 
         enviarCurriculoButton.setText("Enviar currículo");
+
+        lblCidade.setText("Cidade:");
+
+        lblEstado.setText("Estado:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,9 +110,12 @@ public class ServicoFrame extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(categoriasLabel))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(distanciaLabel)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(entregaLabel)
                                         .addGap(18, 18, 18)
-                                        .addComponent(entregaLabel)))
+                                        .addComponent(lblCidade)
+                                        .addGap(93, 93, 93)
+                                        .addComponent(lblEstado)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -118,9 +138,10 @@ public class ServicoFrame extends javax.swing.JFrame {
                     .addComponent(presencaCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(distanciaLabel)
                     .addComponent(entregaLabel)
-                    .addComponent(transporteCheckBox))
+                    .addComponent(transporteCheckBox)
+                    .addComponent(lblCidade)
+                    .addComponent(lblEstado))
                 .addGap(18, 18, 18)
                 .addComponent(lblDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,7 +155,7 @@ public class ServicoFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     /**
      * @param args the command line arguments
      */
@@ -178,10 +199,11 @@ public class ServicoFrame extends javax.swing.JFrame {
     private javax.swing.JButton contatarButton;
     private javax.swing.JScrollPane descricaoScrollPane;
     private javax.swing.JTextArea descricaoTextArea;
-    private javax.swing.JLabel distanciaLabel;
     private javax.swing.JLabel entregaLabel;
     private javax.swing.JButton enviarCurriculoButton;
+    private javax.swing.JLabel lblCidade;
     private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JCheckBox presencaCheckBox;
     private javax.swing.JLabel tituloLabel;
     private javax.swing.JCheckBox transporteCheckBox;

@@ -81,8 +81,6 @@ public class CriarServico extends javax.swing.JFrame {
 
         jLabel6.setText("Valor:");
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("R¤#,##0.00"))));
-
         jLabel7.setText("Nome da Empresa:");
 
         txtNome.setEditable(false);

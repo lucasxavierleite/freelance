@@ -11,9 +11,11 @@ import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 import controller.Persist;
 import controller.ServicoController;
+import controller.Usuario;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -21,6 +23,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import model.ConnectionDb;
 import model.EmpresaModel;
+import model.NotificacaoModel;
 import model.ServicoModel;
 import model.UsuarioModel;
 
@@ -384,54 +387,6 @@ public class Freelance extends javax.swing.JFrame {
         servicosOrdenacaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 1");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 2");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 3");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 4");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Empresa 5");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 4");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 5");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Serviço 6");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         servicosTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         servicosTree.setLargeModel(true);
         servicosTree.setRootVisible(false);
@@ -624,34 +579,7 @@ public class Freelance extends javax.swing.JFrame {
         notificacoesPanel.removeAll();
         notificacoesPanel.revalidate();
         notificacoesPanel.repaint();
-        
-        /* TESTE */
-        
-        Notificacao temp;
-
-        temp = new Notificacao();
-        temp.setId(1);
-        temp.setServico(new ServicoFrame());
-        notificacoesPanel.add(temp.getContentPane());
-
-        temp = new Notificacao();
-        temp.setId(2);
-        temp.setServico(new ServicoFrame());
-        temp.getTituloLabel().setText("Empresa 2: Serviço 1");
-        notificacoesPanel.add(temp.getContentPane());
-
-        temp = new Notificacao();
-        temp.setId(3);
-        temp.setServico(new ServicoFrame());
-        temp.getTituloLabel().setText("Empresa 3: Serviço 4");
-        notificacoesPanel.add(temp.getContentPane());
-        
-        /* FIM DO TESTE */
-
-//        carregarNotificacoes();
-        expandirArvore(servicosTree);
-        expandirArvore(empresasTree);
-                
+               
         ConnectionDb cdb = new ConnectionDb();
         
         UsuarioModel um = new UsuarioModel(cdb);
@@ -663,7 +591,11 @@ public class Freelance extends javax.swing.JFrame {
         ServicoModel sm = new ServicoModel(cdb);
         sm.populateServicos();
         
-        carregarArvore(empresasTree, Persist.getListEmpresas());
+        carregarArvore(servicosTree, Persist.getListEmpresas());
+        carregarArvore(empresasTree, Persist.getListUsuarios());
+        carregarNotificacoes();
+        expandirArvore(servicosTree);
+        expandirArvore(empresasTree);
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -689,6 +621,20 @@ public class Freelance extends javax.swing.JFrame {
 //          n.setVisible(true);
 //          JOptionPane.showMessageDialog(this, "Você tem uma nova notificação");
 //        }
+        NotificacaoModel nm = new NotificacaoModel();
+        nm.populateNotificacoes();
+        if(!Persist.getNc().getServicoList().isEmpty()){
+            for(ServicoController s: Persist.getNc().getServicoList()){
+                Notificacao n = new Notificacao(s);
+                n.setId(s.getId());
+                n.setServico(new ServicoFrame(s));
+                notificacoesPanel.add(n.getContentPane());
+
+            }
+        }else
+            notificacoesPanel.add(new JLabel("Você não tem novas notificações"));
+
+
     }
     
     private void expandirArvore(JTree arvore) {
@@ -722,7 +668,7 @@ public class Freelance extends javax.swing.JFrame {
         }
         
         model.reload(root);
-        arvore.setModel(model);
+        //arvore.setModel(model);
     }
     
     public static void main(String[] args) {

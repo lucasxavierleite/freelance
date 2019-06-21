@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.ServicoController;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -20,12 +21,9 @@ import javax.swing.JTextArea;
  */
 public class Notificacao extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Notificacao
-     */
-    public Notificacao() {
-        initComponents();
-        
+   
+    
+    public void initMethods(){
         getContentPane().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
@@ -83,7 +81,24 @@ public class Notificacao extends javax.swing.JFrame {
             });
         }
     }
+    
+    public Notificacao() {
+        initComponents();
+        initMethods();
+    }
 
+    public Notificacao(ServicoController sc){
+        initComponents();
+        initMethods();
+        valorLabel.setText(String.valueOf(sc.getValor()));
+        categoriasLabel.setText(sc.getCategorias());
+        descricaoTextArea.setText(sc.getDescricao());
+        entregaLabel.setText(sc.getEntrega());
+        tituloLabel.setText(sc.getServico());
+        presencaCheckBox.setSelected(sc.isPresenca());
+        transporteCheckBox.setSelected(sc.isTransporte());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,7 +110,6 @@ public class Notificacao extends javax.swing.JFrame {
 
         tituloLabel = new javax.swing.JLabel();
         valorLabel = new javax.swing.JLabel();
-        distanciaLabel = new javax.swing.JLabel();
         categoriasLabel = new javax.swing.JLabel();
         entregaLabel = new javax.swing.JLabel();
         presencaCheckBox = new javax.swing.JCheckBox();
@@ -118,8 +132,6 @@ public class Notificacao extends javax.swing.JFrame {
         tituloLabel.setText("Empresa 1: Sistema de recomendação");
 
         valorLabel.setText("Valor: R$ 8.260,00");
-
-        distanciaLabel.setText("Distância: 48,4 km");
 
         categoriasLabel.setText("Categorias: Computação, Desenvolvimento Web, Sistemas de recomendação");
 
@@ -167,8 +179,7 @@ public class Notificacao extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(categoriasLabel))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(distanciaLabel)
-                                        .addGap(18, 18, 18)
+                                        .addGap(6, 6, 6)
                                         .addComponent(entregaLabel)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +211,6 @@ public class Notificacao extends javax.swing.JFrame {
                     .addComponent(presencaCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(distanciaLabel)
                     .addComponent(entregaLabel)
                     .addComponent(transporteCheckBox))
                 .addGap(18, 18, 18)
@@ -267,7 +277,6 @@ public class Notificacao extends javax.swing.JFrame {
     private javax.swing.JButton descartarButton;
     private javax.swing.JScrollPane descricaoScrollPane;
     private javax.swing.JTextArea descricaoTextArea;
-    private javax.swing.JLabel distanciaLabel;
     private javax.swing.JLabel entregaLabel;
     private javax.swing.JButton maisButton;
     private javax.swing.JCheckBox presencaCheckBox;
@@ -280,9 +289,7 @@ public class Notificacao extends javax.swing.JFrame {
         return categoriasLabel;
     }
 
-    public JLabel getDistanciaLabel() {
-        return distanciaLabel;
-    }
+    
 
     public JLabel getEntregaLabel() {
         return entregaLabel;

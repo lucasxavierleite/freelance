@@ -18,6 +18,16 @@ public abstract class Persist {
     private static List<Usuario> listUsuarios = new ArrayList<>();
     private static List<Perfil> listClientes = new ArrayList<>();
     private static List<EmpresaController> listEmpresas = new ArrayList<>();
+    private static NotificacaoController nc;
+
+    public static NotificacaoController getNc() {
+        return nc;
+    }
+
+    public static void setNc(NotificacaoController nc) {
+        Persist.nc = nc;
+    }
+    
     
     public static Perfil getPerfilModel() {
         return pm;
