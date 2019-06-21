@@ -29,10 +29,14 @@ public class ClienteModel {
         
     }
     
+    /**
+     * Popula lista de usuários com o mesmo tipo de 
+     * @param listUsuarios
+     */
     public void populateClientes(List<Usuario> listUsuarios){
         try {          
             for(Usuario usuario : listUsuarios) {
-                String query = "SELECT * FROM perfil WHERE cpf_cnpj = " + usuario.getPermissao() + " ORDER BY name";
+                String query = "SELECT * FROM perfil WHERE cpf_cnpj = " + usuario.getCpf_cnpj()+ " ORDER BY name";
                 ResultSet rs = cdb.selectQuery(query);
                 
                 Perfil cliente = new Perfil(

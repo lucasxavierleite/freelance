@@ -158,6 +158,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Descartar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descartarButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="contatarButton">
       <Properties>
@@ -168,6 +171,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceitar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceitarButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblRemetente">
       <Properties>

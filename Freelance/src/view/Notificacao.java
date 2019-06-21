@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.NotificacaoController;
 import controller.Persist;
 import controller.ServicoController;
 import java.awt.Color;
@@ -15,6 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import model.NotificacaoModel;
 
 /**
  *
@@ -22,7 +24,7 @@ import javax.swing.JTextArea;
  */
 public class Notificacao extends javax.swing.JFrame {
 
-   
+    private NotificacaoController nc;
     
     public void initMethods(){
         getContentPane().addMouseListener(new MouseListener() {
@@ -88,7 +90,7 @@ public class Notificacao extends javax.swing.JFrame {
         initMethods();
     }
 
-    public Notificacao(ServicoController sc, String emailRemetente){
+    public Notificacao(ServicoController sc, String emailRemetente, NotificacaoController nc){
         initComponents();
         initMethods();
         valorLabel.setText("Valor: R$"+String.valueOf(sc.getValor()));
@@ -99,6 +101,7 @@ public class Notificacao extends javax.swing.JFrame {
         presencaCheckBox.setSelected(sc.isPresenca());
         transporteCheckBox.setSelected(sc.isTransporte());
         lblRemetente.setText("Email do remetente: "+emailRemetente);
+        this.nc = nc;
     }
     
     /**
@@ -151,10 +154,20 @@ public class Notificacao extends javax.swing.JFrame {
         descricaoScrollPane.setViewportView(descricaoTextArea);
 
         descartarButton.setText("Descartar");
+        descartarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descartarButtonActionPerformed(evt);
+            }
+        });
 
         contatarButton.setText("Contatar empresa");
 
         aceitarButton.setText("Aceitar");
+        aceitarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceitarButtonActionPerformed(evt);
+            }
+        });
 
         lblRemetente.setText("Email do remetente:");
 
@@ -227,6 +240,17 @@ public class Notificacao extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // Notificação visualizada
     }//GEN-LAST:event_formWindowClosed
+
+    private void aceitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceitarButtonActionPerformed
+        
+    }//GEN-LAST:event_aceitarButtonActionPerformed
+
+    private void descartarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarButtonActionPerformed
+        NotificacaoModel nm = new NotificacaoModel();
+        nm.dismissNotificacao(nc);
+        this.setVisible(false);
+        this.setEnabled(false);
+    }//GEN-LAST:event_descartarButtonActionPerformed
 
     /**
      * @param args the command line arguments

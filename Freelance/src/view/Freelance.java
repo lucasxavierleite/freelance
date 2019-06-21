@@ -622,7 +622,7 @@ public class Freelance extends javax.swing.JFrame {
         nm.populateNotificacoes();
         if(!Persist.getListNotificacao().isEmpty()){
             for(NotificacaoController nc : Persist.getListNotificacao()){
-                Notificacao n = new Notificacao(nc.getServicoController(), nc.getEmailRemetente());
+                Notificacao n = new Notificacao(nc.getServicoController(), nc.getEmailRemetente(), nc);
                 n.setId(nc.getServicoController().getId());
                 n.setServico(new ServicoFrame(nc.getServicoController()));
                 notificacoesPanel.add(n.getContentPane());

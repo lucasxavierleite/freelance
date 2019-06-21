@@ -7,6 +7,7 @@ package view;
 
 import controller.Persist;
 import controller.ServicoController;
+import javax.swing.JOptionPane;
 import model.CriarServicoModel;
 
 /**
@@ -44,7 +45,6 @@ public class CriarServico extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -59,6 +59,7 @@ public class CriarServico extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         btnCriar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar Serviço");
@@ -87,7 +88,7 @@ public class CriarServico extends javax.swing.JFrame {
 
         jLabel8.setText("Data de Entrega:");
 
-        txtDataEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
+        txtDataEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
 
         txtDesc.setColumns(20);
         txtDesc.setRows(5);
@@ -133,12 +134,11 @@ public class CriarServico extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
-                            .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtServico, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValor))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -201,7 +201,7 @@ public class CriarServico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtValor))
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,6 +241,13 @@ public class CriarServico extends javax.swing.JFrame {
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         CriarServicoModel csm = new CriarServicoModel();
+        if(txtDesc.getText().equals("") || txtServico.getText().equals("")
+                || txtCidade.getText().equals("") 
+                || txtDataEntrega.getText().equals("")
+                || txtValor.getText().equals("")
+                || listCategorias.getSelectedIndices()==null){
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+        }
         ServicoController sc = new ServicoController(
                 txtDesc.getText(),
                 txtServico.getText(),
@@ -254,6 +261,9 @@ public class CriarServico extends javax.swing.JFrame {
                 checkPresenca.isSelected(),
                 checkTransporte.isSelected());
         csm.createServico(sc);
+        Freelance f = new Freelance();
+        this.setVisible(false);
+        f.setVisible(true);
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -323,6 +333,6 @@ public class CriarServico extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtServico;
-    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
