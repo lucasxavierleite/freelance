@@ -33,8 +33,8 @@ public class ServicoModel {
             for(EmpresaController empresa : Persist.getListEmpresas()) {
                 String query = "SELECT * FROM servico WHERE emailEmpresa = '" + empresa.getUsuario().getEmail() + "' ORDER BY categorias";
                 ResultSet rs = cdb.selectQuery(query);
-                while(rs.next()){
-                    ServicoController serv = new ServicoController(
+                while(rs.next()) {
+                    ServicoController servico = new ServicoController(
                             rs.getString("descricao"),
                             rs.getString("servico"),
                             rs.getString("dataAnuncio"),
@@ -50,7 +50,7 @@ public class ServicoModel {
                             rs.getString("nomeEmpresa")
                     );
 
-                    empresa.getListServicos().add(serv);
+                    empresa.getListServicos().add(servico);
                 }
             }
             

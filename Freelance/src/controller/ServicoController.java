@@ -46,8 +46,7 @@ public class ServicoController {
         this.transporte = transporte;
     }
 
-    
-
+   
     public String getCategorias() {
         return categorias;
     }

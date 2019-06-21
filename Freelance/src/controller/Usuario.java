@@ -15,6 +15,7 @@ public class Usuario {
     private String senha;
     private String cpf_cnpj;
     private Perfil perfil;
+    private EmpresaController empresa;
 
     public Usuario(int permissao, String cpfCnpj, String email, String senha) {
         this.permissao = permissao;
@@ -57,5 +58,13 @@ public class Usuario {
     
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+    
+    public EmpresaController getEmpresa() {
+        return empresa;
+    }
+    
+    public void setEmpresa(EmpresaController empresa) {
+        this.empresa = empresa;
     }
 }

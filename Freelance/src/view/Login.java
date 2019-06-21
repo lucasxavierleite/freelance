@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.Persist;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,16 +115,17 @@ public class Login extends javax.swing.JFrame {
         LoginModel lm = new LoginModel();
         if(lm.login(emailTextField.getText(), senhaPasswordField.getText())){
             this.setVisible(false);
-            Freelance f = new Freelance();    
-            f.setVisible(true);
+            if(Persist.getUser().getPermissao() == 1)
+                new Freelance().setVisible(true);
+            if(Persist.getUser().getPermissao() == 2)
+                new FreelanceEmpresa().setVisible(true);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
         try {
             this.setVisible(false);
-            CriarConta cc = new CriarConta();
-            cc.setVisible(true);
+            new CriarConta().setVisible(true);
         } catch (ParseException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }

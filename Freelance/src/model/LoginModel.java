@@ -1,9 +1,11 @@
 
 package model;
 
+import controller.EmpresaController;
 import controller.Usuario;
 import controller.Persist;
 import controller.Perfil;
+import controller.ServicoController;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,9 +45,39 @@ public class LoginModel {
                             rs.getString("estado"));
                     Persist.setPerfilModel(pm);
                 }
+                
+                if(user.getPermissao() == 2) {
+                    String query = "SELECT * FROM servico where emailEmpresa='" + user.getEmail() + "'";
+                    ResultSet rs2 = connDb.selectQuery(query);
+                    
+                    EmpresaController empresa = new EmpresaController(user);
+                    
+                    while(rs2.next()) {
+                        ServicoController servico = new ServicoController(
+                            rs.getString("descricao"),
+                            rs.getString("servico"),
+                            rs.getString("dataAnuncio"),
+                            rs.getString("cidade"),
+                            rs.getString("estado"),
+                            rs.getString("emailEmpresa"),
+                            rs.getString("entrega"),
+                            rs.getString("categorias"),
+                            rs.getFloat("valor"),
+                            rs.getBoolean("presenca"),
+                            rs.getBoolean("transporte"),
+                            rs.getInt("id"),
+                            rs.getString("nomeEmpresa")
+                        );
+                        
+                        empresa.getListServicos().add(servico);
+                    }
+                    
+                    user.setEmpresa(empresa);
+                }
+                
                 Persist.setUser(user);
                 return true;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email ou Senha inválidos");
             }
             connDb.getCon().close();
