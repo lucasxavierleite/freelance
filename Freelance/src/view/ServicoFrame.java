@@ -3,6 +3,7 @@ package view;
 
 import controller.Persist;
 import controller.ServicoController;
+import javax.swing.JOptionPane;
 import model.PropostaModel;
 
 /**
@@ -27,15 +28,15 @@ public class ServicoFrame extends javax.swing.JFrame {
     public ServicoFrame(ServicoController sc){
         initComponents();
         //Carrega campos com informações passadas
-        categoriasLabel.setText(sc.getCategorias());
+        categoriasLabel.setText("Categorias: "+sc.getCategorias());
         descricaoTextArea.setText(sc.getDescricao());
-        entregaLabel.setText(sc.getEntrega());
-        valorLabel.setText(String.valueOf(sc.getValor()));
+        entregaLabel.setText("Data de Entrega: " + sc.getEntrega());
+        valorLabel.setText("Valor: R$"+String.valueOf(sc.getValor()));
         transporteCheckBox.setSelected(sc.isTransporte());
         presencaCheckBox.setSelected(sc.isPresenca());
         tituloLabel.setText(sc.getServico());
-        lblCidade.setText(sc.getCidade());
-        lblEstado.setText(sc.getEstado());
+        lblCidade.setText("Cidade: "+sc.getCidade());
+        lblEstado.setText("Estado: "+sc.getEstado());
         servicoController = sc;
     }
     
@@ -61,6 +62,7 @@ public class ServicoFrame extends javax.swing.JFrame {
         lblDescricao = new javax.swing.JLabel();
         lblCidade = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
 
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setSize(new java.awt.Dimension(800, 600));
@@ -98,6 +100,13 @@ public class ServicoFrame extends javax.swing.JFrame {
 
         lblEstado.setText("Estado:");
 
+        btnMenu.setText("Voltar ao Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +116,8 @@ public class ServicoFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descricaoScrollPane)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMenu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(contatarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnOferecer))
@@ -160,7 +170,8 @@ public class ServicoFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOferecer)
-                    .addComponent(contatarButton))
+                    .addComponent(contatarButton)
+                    .addComponent(btnMenu))
                 .addGap(27, 27, 27))
         );
 
@@ -171,7 +182,18 @@ public class ServicoFrame extends javax.swing.JFrame {
         //Registra nova proposta
         PropostaModel pm = new PropostaModel();
         pm.enviarProposta(servicoController);
+        JOptionPane.showMessageDialog(this, "Serviço oferecido com sucesso!");
+        Freelance f = new Freelance();
+        this.setVisible(false);
+        f.setVisible(true);
     }//GEN-LAST:event_btnOferecerActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+       //Retorna ao menu
+       this.setVisible(false);
+       Freelance f = new Freelance();
+       f.setVisible(true);
+    }//GEN-LAST:event_btnMenuActionPerformed
     
     /**
      * @param args the command line arguments
@@ -212,6 +234,7 @@ public class ServicoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnOferecer;
     private javax.swing.JLabel categoriasLabel;
     private javax.swing.JButton contatarButton;

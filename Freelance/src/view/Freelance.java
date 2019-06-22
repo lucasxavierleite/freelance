@@ -557,7 +557,19 @@ public class Freelance extends javax.swing.JFrame {
             int nivel = selPathSplit.length - 1;
             String servicoTitulo = selPathSplit[nivel].trim().replace("]", "");
             if(nivel == 2){
-                //ServicoFrame sf = new ServicoFrame(Persist.get);
+                String res[] = servicoTitulo.split(" - ");
+                Integer id = Integer.parseInt(res[0]);
+                for(EmpresaController ec : Persist.getListEmpresas()){
+                    for(ServicoController sc : ec.getListServicos()){
+                        if(id==sc.getId()){
+                            ServicoFrame sf = new ServicoFrame(sc);
+                            sf.setVisible(true);
+                            this.setVisible(false);
+                            return;
+                        }
+                    }
+                }
+                
             }
                 
         }
@@ -637,17 +649,19 @@ public class Freelance extends javax.swing.JFrame {
 
             if(grupo instanceof controller.EmpresaController) {
                 EmpresaController empresa = (EmpresaController) grupo;
-                noPai = new DefaultMutableTreeNode(empresa.getUsuario().getPerfil().getNome());                    
+                noPai = new DefaultMutableTreeNode(empresa.getUsuario().getPerfil().getNome());
+                
                 root.add(noPai);
                 for(Object dado : empresa.getListServicos()){
                     DefaultMutableTreeNode noFilho = null;
 
                     if(dado instanceof ServicoController) {
                         ServicoController servico = (ServicoController) dado;
-                        noFilho = new DefaultMutableTreeNode(servico.getEmpresa());
+                        if(empresa.getUsuario().getPerfil().getNome().equals(servico.getEmpresa()))
+                            noFilho = new DefaultMutableTreeNode(servico.getId() + " - "+ servico.getServico());
                     }
-
-                    noPai.add(noFilho);
+                    if(noFilho!=null)
+                      noPai.add(noFilho);
                 }
             }
         }

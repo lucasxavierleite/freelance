@@ -1,4 +1,6 @@
-DROP DATABASE freelance;
+DELETE FROM mysql.user WHERE User = 'freelanceAdm';
+CREATE USER 'freelanceAdm'@'localhost' IDENTIFIED BY 'Freelance!123'; 
+GRANT ALL PRIVILEGES ON * . * TO 'freelanceAdm'@'localhost';
 CREATE DATABASE freelance;
 USE freelance;
 CREATE TABLE perfil(
@@ -76,26 +78,30 @@ CREATE TABLE areaDeAtuacao(
 INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Daniel', '04/11/1998', '37855424881','USP' ,'student');
 INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (1, 'aaa', 'aaa', '37855424881');
 
+
+INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Teste1', '04/11/1998', '22222222222','-' ,'Criar Panos');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'empresa1', 'd6f644b19812e97b5d871658d6d3400ecd4787faeb9b8990c1e7608288664be77257104a58d033bcf1a0e0945ff06468ebe53e2dff36e248424c7273117dac09', '22222222222');
+
+INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Teste2', '04/11/1998', '33333333333','-' ,'Cerâmica');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'empresa2', 'd6f644b19812e97b5d871658d6d3400ecd4787faeb9b8990c1e7608288664be77257104a58d033bcf1a0e0945ff06468ebe53e2dff36e248424c7273117dac09', '22222222222');
+
+INSERT INTO perfil (name, birthday, cpf_cnpj, university, professionalDesc) VALUES ('Teste3', '04/11/1998', '44444444444','-' ,'Padaria');
+INSERT INTO usuario(permission, email, password, cpf_cnpj) VALUES (2, 'empresa3', 'd6f644b19812e97b5d871658d6d3400ecd4787faeb9b8990c1e7608288664be77257104a58d033bcf1a0e0945ff06468ebe53e2dff36e248424c7273117dac09', '33333333333');
+
 INSERT INTO servico(descricao,valor,nomeEmpresa, servico, dataAnuncio, cidade, estado, emailEmpresa, entrega, presenca, transporte, categorias)
-VALUES ('test1',5000.00,'da inc', 'test s', '2019-02-02', 'são carlos', 'SP', 'aaa', '07/07/2019', 1, 1, 'tudo');
+VALUES ('Cortar pano',5000.00,'Teste1', 'Cortador de Pano', '2019-02-02', 'são carlos', 'SP', 'empresa1', '07/07/2019', 1, 1, 'tudo');
+
 INSERT INTO servico(descricao,valor,nomeEmpresa, servico, dataAnuncio, cidade, estado, emailEmpresa, entrega, presenca, transporte, categorias)
-VALUES ('Servico de verdade',10000.00,'AAA', 'testAAAAAA', '2019-02-02', 'são carlos', 'SP', 'aaa', '07/07/2019', 1, 1, 'tudo');
+VALUES ('Fazer Pote',10000.00,'Teste2', 'Fazedor de Pote', '2019-02-02', 'são carlos', 'SP', 'empresa2', '07/07/2019', 1, 1, 'tudo');
+
+INSERT INTO servico(descricao,valor,nomeEmpresa, servico, dataAnuncio, cidade, estado, emailEmpresa, entrega, presenca, transporte, categorias)
+VALUES ('Fazer pão',10000.00,'Teste3', 'Padeiro', '2019-02-02', 'são carlos', 'SP', 'empresa3', '07/07/2019', 1, 1, 'tudo');
 
 INSERT INTO proposta(fk_idServico, emailDest,visualizado, emailEnvio) VALUES (1, 'da',0, 'aaa');
 INSERT INTO proposta(fk_idServico, emailDest,visualizado, emailEnvio) VALUES (2, 'da',0, 'aaa');
 
-use freelance;
-SELECT * FROM servico INNER JOIN proposta on servico.id=proposta.fk_idServico AND emailDest='da'
-UNION
-SELECT emailEnvio from proposta RIGHT JOIN servico on proposta.fk_idServico=servico.id;
-SELECT * from proposta;
-SELECT * FROM usuario;
 
-/*
-DELETE FROM mysql.user WHERE User = 'freelanceAdm';
-CREATE USER 'freelanceAdm'@'localhost' IDENTIFIED BY 'Freelance!123'; 
-GRANT ALL PRIVILEGES ON * . * TO 'freelanceAdm'@'localhost';
-use freelance;
-SELECT DATE_FORMAT(birthday, '%d/%m/%Y') FROM perfil;
-SELECT * from usuario;
-*/
+
+
+
+

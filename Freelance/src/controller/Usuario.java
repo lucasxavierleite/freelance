@@ -2,7 +2,7 @@
 package controller;
 
 /**
- *
+ * Classe guarda informações sobre usuário
  * @author daniel
  */
 public class Usuario {

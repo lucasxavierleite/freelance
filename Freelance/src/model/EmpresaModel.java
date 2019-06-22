@@ -41,10 +41,7 @@ public class EmpresaModel {
                     
                 String query = "SELECT * FROM perfil WHERE cpf_cnpj = '" + usuario.getCpf_cnpj() + "'";
                 ResultSet rs = cdb.selectQuery(query);
-                rs.next();
-                
-                System.out.println(query);
-                
+                rs.next();                               
                 Perfil perfil = new Perfil(
                     rs.getString("name"),
                     rs.getString("cpf_cnpj"),
