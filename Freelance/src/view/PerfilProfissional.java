@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import javax.swing.DefaultComboBoxModel;
@@ -10,7 +6,7 @@ import controller.Persist;
 import model.PerfilProfissionalModel;
 
 /**
- *
+ * Classe responsável pelo manejamento do forms de perfil pessoal
  * @author lucas
  */
 public class PerfilProfissional extends javax.swing.JPanel {
@@ -228,6 +224,7 @@ public class PerfilProfissional extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desbloquearToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_desbloquearToggleButtonItemStateChanged
+        //Altera propriedade Enabled dos campos para permitir ou não edição
         if(desbloquearToggleButton.isSelected()) {
             desbloquearToggleButton.setText("Bloquear");
             descartarButton.setEnabled(true);
@@ -240,6 +237,7 @@ public class PerfilProfissional extends javax.swing.JPanel {
     }//GEN-LAST:event_desbloquearToggleButtonItemStateChanged
 
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
+        //Salva as informações editadas na persistência e no banco de dados
         desbloquearToggleButton.setSelected(false);
         Persist.getPerfilModel().setAnoFormacao(Integer.parseInt(dataTxt.getText()));
         Persist.getPerfilModel().setAreaAtuacao(txtArea.getText());
@@ -254,6 +252,7 @@ public class PerfilProfissional extends javax.swing.JPanel {
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void desbloquearToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desbloquearToggleButtonActionPerformed
+        //Altera propriedade de editable dos campos abaixo
         txtArea.setEditable(!txtArea.isEditable());
         txtDesc.setEditable(!txtDesc.isEditable());
         txtEspecializacao.setEditable(!txtEspecializacao.isEditable());

@@ -1,4 +1,3 @@
-
 package model;
 
 import controller.EmpresaController;
@@ -12,13 +11,20 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import view.Freelance;
 /**
- *
+ * Classe responsável por realizar o login
  * @author daniel
  */
 public class LoginModel {
     
     private ConnectionDb connDb = new ConnectionDb();
     private Usuario user;
+
+    /**
+     * Realiza o login, usa a função hash SHA-512 para conferir com a do banco de dados
+     * @param email Email passado pelo usuário
+     * @param senha Senha passada pelo usuário
+     * @return true para sucesso, false para falha
+     */
     public boolean login(String email, String senha){
         SecurePassword sp = new SecurePassword();
         String secPass = sp.securePassword(senha);
@@ -43,9 +49,9 @@ public class LoginModel {
                             rs.getString("areaAtuacao"),
                             rs.getInt("anoFormacao"),
                             rs.getString("estado"));
-                    Persist.setPerfilModel(pm);
+                    Persist.setPerfilModel(pm); //Perfil carregado na persistência
                 }
-                
+
                 if(user.getPermissao() == 2) {
                     String query = "SELECT * FROM servico where emailEmpresa='" + user.getEmail() + "'";
                     ResultSet rs2 = connDb.selectQuery(query);
@@ -71,13 +77,14 @@ public class LoginModel {
                         
                         empresa.getListServicos().add(servico);
                     }
-                    
+
                     user.setEmpresa(empresa);
                 }
-                
+
                 Persist.setUser(user);
                 return true;
             } else {
+                //Usuário não encontrado
                 JOptionPane.showMessageDialog(null, "Email ou Senha inválidos");
             }
             connDb.getCon().close();

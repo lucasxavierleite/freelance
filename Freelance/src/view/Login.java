@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import controller.Persist;
@@ -12,7 +8,7 @@ import java.util.logging.Logger;
 import model.LoginModel;
 
 /**
- *
+ * Classe de manejamento do forms de login
  * @author lucas
  */
 public class Login extends javax.swing.JFrame {
@@ -112,8 +108,10 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        //Efetuação do login
         LoginModel lm = new LoginModel();
         if(lm.login(emailTextField.getText(), senhaPasswordField.getText())){
+            //Carregamento do menu principal caso login ocorra com sucesso
             this.setVisible(false);
             if(Persist.getUser().getPermissao() == 1)
                 new Freelance().setVisible(true);
@@ -124,6 +122,7 @@ public class Login extends javax.swing.JFrame {
 
     private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
         try {
+            //Abertura do forms de cadastro de conta
             this.setVisible(false);
             new CriarConta().setVisible(true);
         } catch (ParseException ex) {

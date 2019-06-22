@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import controller.Persist;
@@ -10,7 +6,7 @@ import controller.ServicoController;
 import model.PropostaModel;
 
 /**
- *
+ * Classe responsável pelo manejamento do forms de serviço
  * @author lucas
  */
 public class ServicoFrame extends javax.swing.JFrame {
@@ -24,8 +20,13 @@ public class ServicoFrame extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Construtor
+     * @param sc informações do serviço
+     */
     public ServicoFrame(ServicoController sc){
         initComponents();
+        //Carrega campos com informações passadas
         categoriasLabel.setText(sc.getCategorias());
         descricaoTextArea.setText(sc.getDescricao());
         entregaLabel.setText(sc.getEntrega());
@@ -167,6 +168,7 @@ public class ServicoFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOferecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOferecerActionPerformed
+        //Registra nova proposta
         PropostaModel pm = new PropostaModel();
         pm.enviarProposta(servicoController);
     }//GEN-LAST:event_btnOferecerActionPerformed

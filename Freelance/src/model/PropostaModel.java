@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import controller.Persist;
@@ -12,13 +8,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe responsável pelo manejamento de dados das propostas entre programa e banco de dados
  * @author daniel
  */
 public class PropostaModel {
     private ConnectionDb cdb;
     
-    
+    /**
+     * Insere uma nova proposta de acordo com o serviço passado e as informações que estão na persistência
+     * @param sc
+     */
     public void enviarProposta(ServicoController sc){
         try {
             cdb = new ConnectionDb();

@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
+ * Classe responsável pelo manejamento de novos serviços entre o programa e o bd
  * @author daniel
  */
 import controller.Persist;
@@ -19,6 +15,10 @@ public class CriarServicoModel {
     
     private ConnectionDb cdb;
     
+    /**
+     * Registra novos serrviços no banco de dados
+     * @param sc Informações do serviço a serem cadastradas
+     */
     public void createServico(ServicoController sc){
         try {
             String query = "INSERT INTO servico(descricao,valor,nomeEmpresa, servico,"

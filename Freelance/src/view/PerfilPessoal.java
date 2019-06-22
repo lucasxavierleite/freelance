@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 import model.ConnectionDb;
 import controller.Persist;
 import controller.Usuario;
 import model.PerfilPessoalModel;
 /**
- *
+ * Classe de manejamento do forms perfil pessoal
  * @author lucas
  */
 public class PerfilPessoal extends javax.swing.JPanel {
@@ -162,6 +158,7 @@ public class PerfilPessoal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desbloquearToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_desbloquearToggleButtonItemStateChanged
+        //Altera propriedade de editable dos campos abaixos para permitir edição
         if(desbloquearToggleButton.isSelected()) {
             desbloquearToggleButton.setText("Bloquear");
             descartarButton.setEnabled(true);
@@ -183,6 +180,7 @@ public class PerfilPessoal extends javax.swing.JPanel {
     }//GEN-LAST:event_desbloquearToggleButtonItemStateChanged
 
     private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
+        //Atualiza informações do perfil pessoal
         desbloquearToggleButton.setSelected(false);
         PerfilPessoalModel ppm = new PerfilPessoalModel();
         Persist.getPerfilModel().setNome(txtNome.getText());

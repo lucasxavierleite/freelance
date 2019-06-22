@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import controller.Perfil;
@@ -15,30 +11,34 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.*;
 /**
- *
+ * Classe responsável pelo manejamento de novos usuários entre o programa e o bd
  * @author daniel
  */
 public class CriarContaModel {
    
     private ConnectionDb cdb = new ConnectionDb();
     
-    
+    /**
+     * Cadastra novo usuário no banco de dados de acordo com os dados na persistência
+     * @return true para sucesso, false para erro
+     */
     public boolean cadastraUsuario(){
         try {
             Usuario user = Persist.getUser();
             Perfil pm = Persist.getPerfilModel();
             ResultSet rs = cdb.selectQuery("SELECT * from perfil where cpf_cnpj='"+pm.getCpf_cnpj()+"';");
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "CPF/CNPJ já cadastrado");
+                JOptionPane.showMessageDialog(null, "CPF/CNPJ já cadastrado"); //Cpf_Cnpj deve ser único
                 return false;
             }
             cdb.getCon().close();
             rs = cdb.selectQuery("SELECT * from usuario where email='"+user.getEmail()+"';");
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Email já cadastrado");
+                JOptionPane.showMessageDialog(null, "Email já cadastrado"); //Email deve ser único
                 return false;
             }
             cdb.getCon().close();
+            //Primeiro cadastra-se o perfil para depois cadastrar o usuário
             cdb.insertQuery("INSERT INTO perfil(name, birthday, cpf_cnpj, university, professionalDesc) VALUES('"+pm.getNome()+"','"+pm.getDataNasc()+"','"+pm.getCpf_cnpj()+"','"+pm.getUniversidade()+"','"+pm.getDescricaoProf()+"')");
             cdb.getCon().close();
             String secPass = SecurePassword.securePassword(user.getSenha());

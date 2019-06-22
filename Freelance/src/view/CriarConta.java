@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
-import java.text.DateFormat;
-import java.text.Format;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -22,7 +12,7 @@ import controller.Persist;
 import controller.Usuario;
 
 /**
- *
+ * Classe de manejamento do forms da criação de contas novas
  * @author daniel
  */
 public class CriarConta extends javax.swing.JFrame {
@@ -210,6 +200,7 @@ public class CriarConta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPessoaActionPerformed
+        //Altera campos de acordo com o tipo de pessoa que é escolhido pela combo box
         if (comboPessoa.getSelectedIndex() == 0) {
             try {
                 lblCpfCnpj.setText("CPF");
@@ -231,16 +222,19 @@ public class CriarConta extends javax.swing.JFrame {
     }//GEN-LAST:event_comboPessoaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        //Checa se campos necessários foram preenchidos
         if(txtSenha.getText().equals("") || txtNome.getText().equals("") || 
             txtCpfCnpj.getText().equals("") || txtEmail.getText().equals("") || txtConfirmar.getText().equals("") ||
             (txtUniversidade.getText().equals("") && comboPessoa.getSelectedIndex() == 0)) {
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos");
             return;
         }
+        //Checa se campos de senha e de confirmação de senha são idênticos
         if (txtSenha.getText().equals(txtConfirmar.getText())) {
             Persist.setPerfilModel(new Perfil(txtNome.getText(), txtCpfCnpj.getText(), txtUniversidade.getText(), txtDesc.getText(), txtData.getText()));
             Persist.setUser(new Usuario(comboPessoa.getSelectedIndex() + 1, txtCpfCnpj.getText(), txtEmail.getText(), txtSenha.getText()));
             CriarContaModel cm = new CriarContaModel();
+            //Cadastra novo usuário
             if(cm.cadastraUsuario()){            
                 this.setVisible(false);
                 this.setEnabled(false);
@@ -252,6 +246,7 @@ public class CriarConta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        //Retorna ao menu principal
         this.setVisible(false);
         this.setEnabled(false);
         new Login().setVisible(true);
