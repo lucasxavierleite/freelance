@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
+ * Classe responsável pelo manejamento de dados de usuários entre programa e bd
  * @author lucas
  */
 
@@ -19,6 +15,10 @@ import controller.Usuario;
 public class UsuarioModel {
     private ConnectionDb cdb;
     
+    /**
+     * Construtor
+     * @param cdb objeto da classe de conexão
+     */
     public UsuarioModel(ConnectionDb cdb) {
         this.cdb = cdb;
     }
@@ -27,6 +27,10 @@ public class UsuarioModel {
         
     }
     
+    /**
+     * Popula a lista de usuários selecionados por tipo de permissão (1 = pessoa física/2 = pessoa jurídica)
+     * @param tipo
+     */
     public void populateUsuarios(int tipo){
         try {
             if(tipo != 1 && tipo != 2)

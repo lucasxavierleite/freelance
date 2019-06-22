@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.nio.charset.StandardCharsets;
@@ -10,13 +6,18 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *
+ * Classe realiza operação de hash utilizando o algorítimo de SHA-512 para gerar uma
+ * senha criptografada
  * @author daniel
  */
 public class SecurePassword {
    
-     
-   public static String securePassword(String passwordToHash){
+    /**
+     * Gera uma senha criptografada para ser guardada no banco de dados
+     * @param passwordToHash Senha a ser criptografada
+     * @return generatedPassword Senha gerada pelo algorítimo
+     */
+    public static String securePassword(String passwordToHash){
             String generatedPassword = null;
             try {
                  MessageDigest md = MessageDigest.getInstance("SHA-512");

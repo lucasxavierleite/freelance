@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
+ * Classe responsável pelo manejamento de dados de serviçoi entre programa e banco de dados
  * @author daniel
  */
 
@@ -20,6 +16,10 @@ import controller.ServicoController;
 public class ServicoModel {
     private ConnectionDb cdb;
     
+    /**
+     * Construtor
+     * @param cdb objeto da classe de conexão
+     */
     public ServicoModel(ConnectionDb cdb) {
         this.cdb = cdb;
     }
@@ -28,6 +28,9 @@ public class ServicoModel {
         
     }
     
+    /**
+     * Popula lista de serviços de cada empresa presente na lista de empresas na classe de persistência
+     */
     public void populateServicos() {
         try {
             for(EmpresaController empresa : Persist.getListEmpresas()) {

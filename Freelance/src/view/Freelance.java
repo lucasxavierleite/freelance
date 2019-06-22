@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import controller.EmpresaController;
@@ -25,7 +21,7 @@ import model.UsuarioModel;
 
 
 /**
- *
+ * Classe de manejamento do painel principal do programa
  * @author lucas
  */
 public class Freelance extends javax.swing.JFrame {
@@ -521,6 +517,7 @@ public class Freelance extends javax.swing.JFrame {
     }//GEN-LAST:event_servicosPresencaCheckBoxItemStateChanged
 
     private void perfilMenuListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_perfilMenuListValueChanged
+        //Troca de painel de acordo com o que foi selecionado no menu
         switch (perfilMenuList.getSelectedValue()) {
             case "Pessoal":
                 menuSelecaoScrollPane.getViewport().add(new PerfilPessoal());
@@ -540,6 +537,7 @@ public class Freelance extends javax.swing.JFrame {
     }//GEN-LAST:event_empresasMaisButtonActionPerformed
 
     private void empresasTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empresasTreeMousePressed
+        //Evento abre tela da empresa de acordo com o que foi selecionado na árvore de empresas
         int linha = empresasTree.getRowForLocation(evt.getX(), evt.getY());
         TreePath caminho = empresasTree.getPathForLocation(evt.getX(), evt.getY());
         if(linha != -1 && evt.getClickCount() == 2) {
@@ -552,6 +550,7 @@ public class Freelance extends javax.swing.JFrame {
     }//GEN-LAST:event_empresasTreeMousePressed
 
     private void servicosTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicosTreeMousePressed
+        //Evento abre tela de serviços de acordo com o que foi selecionado na árvore de serviços
         int linha = servicosTree.getRowForLocation(evt.getX(), evt.getY());
         TreePath caminho = servicosTree.getPathForLocation(evt.getX(), evt.getY());
         if(linha != -1 && evt.getClickCount() == 2) {
@@ -566,10 +565,9 @@ public class Freelance extends javax.swing.JFrame {
     }//GEN-LAST:event_servicosTreeMousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /* TODO
-         * Buscar e adicionar todas as notificações do banco de dados em uma lista
-         * Pra cada item da lista, instanciar um objeto Notificacao e definir seus atributos
-         * Exibir */
+        /*
+            Popula árvores de serviço e empresas e aba de notificações
+        */
         
         perfilMenuList.setSelectedIndex(0);
 
@@ -597,27 +595,14 @@ public class Freelance extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCriaServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriaServicoActionPerformed
+        //Abre a tela de criar conta
         CriarServico cs = new CriarServico();
         this.setVisible(false);
         cs.setVisible(true);
     }//GEN-LAST:event_btnCriaServicoActionPerformed
 
     private void carregarNotificacoes() {
-        // Buscar no banco de dados
-        // SELECT * FROM notificacoes
-        // Para cada resultado:
-
-//        Notificacao n = new Notificacao();
-//        Servico servico = new Servico();
-//        servico.setNome(nome);
-//        servico. ..
-//        n.setId(id);
-//        n.setServico(servico);
-//        notificacoesPanel.add(n.getContentPane());
-//        if(visualizada == false) {
-//          n.setVisible(true);
-//          JOptionPane.showMessageDialog(this, "Você tem uma nova notificação");
-//        }
+        //Carrega notificações carregadas na classe de persistência
         NotificacaoModel nm = new NotificacaoModel();
         nm.populateNotificacoes();
         if(!Persist.getListNotificacao().isEmpty()){
@@ -627,8 +612,6 @@ public class Freelance extends javax.swing.JFrame {
                 n.setServico(new ServicoFrame(nc.getServicoController()));
                 notificacoesPanel.add(n.getContentPane());
             }
-                
-
             
         }else
             notificacoesPanel.add(new JLabel("Você não tem novas notificações"));
@@ -642,6 +625,11 @@ public class Freelance extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Carrega árvore selecionada de acordo com o tipo de elemento da lista
+     * @param arvore árvore a ser populada
+     * @param grupos Lista de objetos a serem carregados na árvore
+     */
     private void carregarArvore(JTree arvore, List grupos) {
         DefaultTreeModel model = (DefaultTreeModel) arvore.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) arvore.getModel().getRoot();

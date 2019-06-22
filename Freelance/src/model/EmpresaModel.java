@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
+ * Classe responsável pelo manejamento de empresas entre o programa e o bd
  * @author lucas
  */
 
@@ -22,6 +18,10 @@ import java.util.List;
 public class EmpresaModel {
     private ConnectionDb cdb;
     
+    /**
+     * Construtor
+     * @param cdb objeto da Classe de conexão a ser usado
+     */
     public EmpresaModel(ConnectionDb cdb) {
         this.cdb = cdb;
     }
@@ -30,10 +30,13 @@ public class EmpresaModel {
         
     }
     
+    /**
+     * Seleciona todas as empresas da lista de usuário e as adiciona na lista na classe de persistência
+     */
     public void populateEmpresas(){
         try {          
             for(Usuario usuario : Persist.getListUsuarios()) {
-                if(usuario.getPermissao() != 2)
+                if(usuario.getPermissao() != 2)//Caso usuário não for pessoa jurídica
                     continue;
                     
                 String query = "SELECT * FROM perfil WHERE cpf_cnpj = '" + usuario.getCpf_cnpj() + "'";
@@ -52,10 +55,10 @@ public class EmpresaModel {
                     rs.getString("areaAtuacao"),
                     rs.getString("estado")
                 );
-                
+                //Novo perfil carregado
                 usuario.setPerfil(perfil);
                 EmpresaController empresa = new EmpresaController(usuario);
-                Persist.getListEmpresas().add(empresa);
+                Persist.getListEmpresas().add(empresa); //Adição da empresa na persistência
             }
             
             cdb.getCon().close();

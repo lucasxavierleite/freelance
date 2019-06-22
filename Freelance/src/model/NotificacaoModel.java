@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import controller.NotificacaoController;
@@ -14,13 +10,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe responsável por manejar propostas de serviços (notificações) entre programa e banco de dados
  * @author daniel
  */
 public class NotificacaoModel {
     
     private ConnectionDb cdb;
     
+    /**
+     * Popula lista de notificações com resultados do banco de dados
+     */
     public void populateNotificacoes(){
         try {
             cdb = new ConnectionDb();
@@ -43,7 +42,6 @@ public class NotificacaoModel {
                         rs.getBoolean("transporte"));
                 nc.setServicoController(sc);
                 nc.setEmailRemetente(rs.getString("emailEnvio"));
-                System.out.println(sc.getId());
             }
             cdb.getCon().close();
             
@@ -54,6 +52,10 @@ public class NotificacaoModel {
         
     }
     
+    /**
+     * Altera status da notificação de visualizado para verdadeiro para então não precisar ser carregada novamente 
+     * @param nc Informações da notificação a ser alterada
+     */
     public void dismissNotificacao(NotificacaoController nc){
         try {
             cdb = new ConnectionDb();

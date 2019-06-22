@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import controller.Persist;
@@ -12,12 +8,16 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Classe responsável pelo manejamento de dados do perfil profissional entre o programa e o banco de dados
  * @author daniel
  */
 public class PerfilProfissionalModel {
     
     private ConnectionDb cdb;
+
+    /**
+     * Atualiza perfil pessoal de acordo com o que foi passado para a classe de persistência
+     */
     public void updatePerfilProfissional(){
         try {
             cdb = new ConnectionDb();

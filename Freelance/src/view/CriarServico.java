@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import controller.Persist;
@@ -11,7 +7,7 @@ import javax.swing.JOptionPane;
 import model.CriarServicoModel;
 
 /**
- *
+ * Classe de manejamento do forms da criação de novos serviços
  * @author daniel
  */
 public class CriarServico extends javax.swing.JFrame {
@@ -241,12 +237,14 @@ public class CriarServico extends javax.swing.JFrame {
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         CriarServicoModel csm = new CriarServicoModel();
+        //Checa se campos necessários foram preenchidos
         if(txtDesc.getText().equals("") || txtServico.getText().equals("")
                 || txtCidade.getText().equals("") 
                 || txtDataEntrega.getText().equals("")
                 || txtValor.getText().equals("")
                 || listCategorias.getSelectedIndices()==null){
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            return;
         }
         ServicoController sc = new ServicoController(
                 txtDesc.getText(),
@@ -260,13 +258,16 @@ public class CriarServico extends javax.swing.JFrame {
                 Float.parseFloat(txtValor.getText()),
                 checkPresenca.isSelected(),
                 checkTransporte.isSelected());
+        //Cria novo serviço
         csm.createServico(sc);
         Freelance f = new Freelance();
+        //Retorna ao menu principal
         this.setVisible(false);
         f.setVisible(true);
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        //Retorna ao menu principal
         Freelance f = new Freelance();
         f.setVisible(true);
         this.setVisible(false);

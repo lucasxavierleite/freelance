@@ -26,7 +26,10 @@ public class Notificacao extends javax.swing.JFrame {
 
     private NotificacaoController nc;
     
-    public void initMethods(){
+    /**
+     *Inicializa eventos do painel
+     */
+    public void initEvents(){
         getContentPane().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
@@ -43,7 +46,6 @@ public class Notificacao extends javax.swing.JFrame {
             @Override
             public void mouseEntered(MouseEvent me) {
                 getContentPane().setBackground(Color.lightGray);
-//                getContentPane().setBackground(new Color(0, 0, 0, 130));
             }
 
             @Override
@@ -85,14 +87,23 @@ public class Notificacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Construtor padrão
+     */
     public Notificacao() {
         initComponents();
-        initMethods();
+        initEvents();
     }
 
+    /**
+     * Construtor
+     * @param sc
+     * @param emailRemetente
+     * @param nc
+     */
     public Notificacao(ServicoController sc, String emailRemetente, NotificacaoController nc){
         initComponents();
-        initMethods();
+        initEvents();
         valorLabel.setText("Valor: R$"+String.valueOf(sc.getValor()));
         categoriasLabel.setText("Categorias: "+sc.getCategorias());
         descricaoTextArea.setText(sc.getDescricao());
@@ -246,6 +257,7 @@ public class Notificacao extends javax.swing.JFrame {
     }//GEN-LAST:event_aceitarButtonActionPerformed
 
     private void descartarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarButtonActionPerformed
+        //Remove notificações do painel
         NotificacaoModel nm = new NotificacaoModel();
         nm.dismissNotificacao(nc);
         this.setVisible(false);
