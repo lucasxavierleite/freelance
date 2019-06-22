@@ -6,6 +6,7 @@
 package view;
 
 import controller.EmpresaController;
+import controller.NotificacaoController;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
@@ -474,13 +475,14 @@ public class FreelanceEmpresa extends javax.swing.JFrame {
 //        }
         NotificacaoModel nm = new NotificacaoModel();
         nm.populateNotificacoes();
-        if(!Persist.getNc().getServicoList().isEmpty()) {
-            for(ServicoController s: Persist.getNc().getServicoList()){
-                Notificacao n = new Notificacao(s);
-                n.setId(s.getId());
-                n.setServico(new ServicoFrame(s));
+        if(!Persist.getListNotificacao().isEmpty()) {
+            for(NotificacaoController nc : Persist.getListNotificacao()){
+                Notificacao n = new Notificacao(nc.getServicoController(), nc.getEmailRemetente(), nc);
+                n.setId(nc.getServicoController().getId());
+                n.setServico(new ServicoFrame(nc.getServicoController()));
                 notificacoesPanel.add(n.getContentPane());
             }
+
         } else {
             notificacoesPanel.add(new JLabel("Você não tem novas notificações"));
         }

@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.NotificacaoController;
+import controller.Persist;
 import controller.ServicoController;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import model.NotificacaoModel;
 
 /**
  *
@@ -21,7 +24,7 @@ import javax.swing.JTextArea;
  */
 public class Notificacao extends javax.swing.JFrame {
 
-   
+    private NotificacaoController nc;
     
     public void initMethods(){
         getContentPane().addMouseListener(new MouseListener() {
@@ -87,16 +90,18 @@ public class Notificacao extends javax.swing.JFrame {
         initMethods();
     }
 
-    public Notificacao(ServicoController sc){
+    public Notificacao(ServicoController sc, String emailRemetente, NotificacaoController nc){
         initComponents();
         initMethods();
-        valorLabel.setText(String.valueOf(sc.getValor()));
-        categoriasLabel.setText(sc.getCategorias());
+        valorLabel.setText("Valor: R$"+String.valueOf(sc.getValor()));
+        categoriasLabel.setText("Categorias: "+sc.getCategorias());
         descricaoTextArea.setText(sc.getDescricao());
-        entregaLabel.setText(sc.getEntrega());
+        entregaLabel.setText("Data de Entrega: "+sc.getEntrega());
         tituloLabel.setText(sc.getServico());
         presencaCheckBox.setSelected(sc.isPresenca());
         transporteCheckBox.setSelected(sc.isTransporte());
+        lblRemetente.setText("Email do remetente: "+emailRemetente);
+        this.nc = nc;
     }
     
     /**
@@ -119,7 +124,7 @@ public class Notificacao extends javax.swing.JFrame {
         descartarButton = new javax.swing.JButton();
         contatarButton = new javax.swing.JButton();
         aceitarButton = new javax.swing.JButton();
-        maisButton = new javax.swing.JButton();
+        lblRemetente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -149,17 +154,22 @@ public class Notificacao extends javax.swing.JFrame {
         descricaoScrollPane.setViewportView(descricaoTextArea);
 
         descartarButton.setText("Descartar");
+        descartarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descartarButtonActionPerformed(evt);
+            }
+        });
 
         contatarButton.setText("Contatar empresa");
 
         aceitarButton.setText("Aceitar");
-
-        maisButton.setText("Ver mais >");
-        maisButton.addActionListener(new java.awt.event.ActionListener() {
+        aceitarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maisButtonActionPerformed(evt);
+                aceitarButtonActionPerformed(evt);
             }
         });
+
+        lblRemetente.setText("Email do remetente:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +190,9 @@ public class Notificacao extends javax.swing.JFrame {
                                         .addComponent(categoriasLabel))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(entregaLabel)))
+                                        .addComponent(entregaLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblRemetente)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -194,9 +206,7 @@ public class Notificacao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(contatarButton)
                         .addGap(4, 4, 4)
-                        .addComponent(aceitarButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maisButton)))
+                        .addComponent(aceitarButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -212,15 +222,15 @@ public class Notificacao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entregaLabel)
-                    .addComponent(transporteCheckBox))
+                    .addComponent(transporteCheckBox)
+                    .addComponent(lblRemetente))
                 .addGap(18, 18, 18)
                 .addComponent(descricaoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descartarButton)
                     .addComponent(contatarButton)
-                    .addComponent(aceitarButton)
-                    .addComponent(maisButton))
+                    .addComponent(aceitarButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,9 +241,16 @@ public class Notificacao extends javax.swing.JFrame {
         // Notificação visualizada
     }//GEN-LAST:event_formWindowClosed
 
-    private void maisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maisButtonActionPerformed
-        servico.setVisible(true);
-    }//GEN-LAST:event_maisButtonActionPerformed
+    private void aceitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceitarButtonActionPerformed
+        
+    }//GEN-LAST:event_aceitarButtonActionPerformed
+
+    private void descartarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarButtonActionPerformed
+        NotificacaoModel nm = new NotificacaoModel();
+        nm.dismissNotificacao(nc);
+        this.setVisible(false);
+        this.setEnabled(false);
+    }//GEN-LAST:event_descartarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +295,7 @@ public class Notificacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane descricaoScrollPane;
     private javax.swing.JTextArea descricaoTextArea;
     private javax.swing.JLabel entregaLabel;
-    private javax.swing.JButton maisButton;
+    private javax.swing.JLabel lblRemetente;
     private javax.swing.JCheckBox presencaCheckBox;
     private javax.swing.JLabel tituloLabel;
     private javax.swing.JCheckBox transporteCheckBox;
@@ -288,8 +305,6 @@ public class Notificacao extends javax.swing.JFrame {
     public JLabel getCategoriasLabel() {
         return categoriasLabel;
     }
-
-    
 
     public JLabel getEntregaLabel() {
         return entregaLabel;

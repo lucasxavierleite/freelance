@@ -55,6 +55,7 @@ public class CriarServico extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         categoriasScrollPane = new javax.swing.JScrollPane();
         listCategorias = new javax.swing.JList<>();
+        txtValor = new javax.swing.JTextField();
 
         setTitle("Criar Serviço");
 
@@ -70,7 +71,7 @@ public class CriarServico extends javax.swing.JFrame {
 
         lblDataEntrega.setText("Data de Entrega");
 
-        txtDataEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
+        txtDataEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
 
         txtDesc.setColumns(20);
         txtDesc.setLineWrap(true);
@@ -223,13 +224,15 @@ public class CriarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
-        if(txtDesc.getText().equals("") || txtTitulo.getText().equals("") || txtCidade.getText().equals("") ||
-                listCategorias.getSelectedValuesList().size() == 0 ||
-                txtValor.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos");
-            return;
+        CriarServicoModel csm = new CriarServicoModel();
+        if(txtDesc.getText().equals("") || txtTitulo.getText().equals("")
+                || txtCidade.getText().equals("") 
+                || txtDataEntrega.getText().equals("")
+                || txtValor.getText().equals("")
+                || listCategorias.getSelectedIndices()==null){
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
         }
-       
+
         ServicoController sc = new ServicoController(
                 txtDesc.getText(),
                 txtTitulo.getText(),
@@ -243,7 +246,7 @@ public class CriarServico extends javax.swing.JFrame {
                 checkPresenca.isSelected(),
                 checkTransporte.isSelected()
         );
-       
+
         Persist.getUser().getEmpresa().getListServicos().add(sc);
         new CriarServicoModel().createServico(sc);
 
@@ -313,6 +316,8 @@ public class CriarServico extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtDataEntrega;
     private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtTitulo;
-    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

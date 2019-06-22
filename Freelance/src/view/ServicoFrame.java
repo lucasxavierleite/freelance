@@ -5,7 +5,9 @@
  */
 package view;
 
+import controller.Persist;
 import controller.ServicoController;
+import model.PropostaModel;
 
 /**
  *
@@ -13,6 +15,8 @@ import controller.ServicoController;
  */
 public class ServicoFrame extends javax.swing.JFrame {
 
+    private ServicoController servicoController;
+    
     /**
      * Creates new form EmpresaFrame
      */
@@ -31,6 +35,7 @@ public class ServicoFrame extends javax.swing.JFrame {
         tituloLabel.setText(sc.getServico());
         lblCidade.setText(sc.getCidade());
         lblEstado.setText(sc.getEstado());
+        servicoController = sc;
     }
     
     /**
@@ -51,7 +56,7 @@ public class ServicoFrame extends javax.swing.JFrame {
         descricaoScrollPane = new javax.swing.JScrollPane();
         descricaoTextArea = new javax.swing.JTextArea();
         contatarButton = new javax.swing.JButton();
-        enviarCurriculoButton = new javax.swing.JButton();
+        btnOferecer = new javax.swing.JButton();
         lblDescricao = new javax.swing.JLabel();
         lblCidade = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
@@ -81,7 +86,12 @@ public class ServicoFrame extends javax.swing.JFrame {
 
         contatarButton.setText("Contatar empresa");
 
-        enviarCurriculoButton.setText("Enviar currículo");
+        btnOferecer.setText("Ofrecer Serviço");
+        btnOferecer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOferecerActionPerformed(evt);
+            }
+        });
 
         lblCidade.setText("Cidade:");
 
@@ -99,7 +109,7 @@ public class ServicoFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(contatarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enviarCurriculoButton))
+                        .addComponent(btnOferecer))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tituloLabel)
@@ -148,13 +158,18 @@ public class ServicoFrame extends javax.swing.JFrame {
                 .addComponent(descricaoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviarCurriculoButton)
+                    .addComponent(btnOferecer)
                     .addComponent(contatarButton))
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOferecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOferecerActionPerformed
+        PropostaModel pm = new PropostaModel();
+        pm.enviarProposta(servicoController);
+    }//GEN-LAST:event_btnOferecerActionPerformed
     
     /**
      * @param args the command line arguments
@@ -195,12 +210,12 @@ public class ServicoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOferecer;
     private javax.swing.JLabel categoriasLabel;
     private javax.swing.JButton contatarButton;
     private javax.swing.JScrollPane descricaoScrollPane;
     private javax.swing.JTextArea descricaoTextArea;
     private javax.swing.JLabel entregaLabel;
-    private javax.swing.JButton enviarCurriculoButton;
     private javax.swing.JLabel lblCidade;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblEstado;

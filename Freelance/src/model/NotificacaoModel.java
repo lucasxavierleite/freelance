@@ -24,9 +24,10 @@ public class NotificacaoModel {
     public void populateNotificacoes(){
         try {
             cdb = new ConnectionDb();
-            ResultSet rs = cdb.selectQuery("SELECT * FROM servico INNER JOIN proposta ON servico.id=proposta.fk_idServico AND proposta.emailDest='"+Persist.getUser().getEmail()+"'");
+            ResultSet rs = cdb.selectQuery("SELECT * FROM servico LEFT JOIN proposta ON servico.id=proposta.fk_idServico AND proposta.emailDest='"+Persist.getUser().getEmail()+"' AND proposta.visualizado=false");
             NotificacaoController nc = new NotificacaoController();
             while(rs.next()){
+                
                 ServicoController sc = new ServicoController(
                         rs.getString("descricao"),
                         rs.getString("servico"),
@@ -40,13 +41,30 @@ public class NotificacaoModel {
                         rs.getInt("id"),
                         rs.getBoolean("presenca"),
                         rs.getBoolean("transporte"));
-                nc.getServicoList().add(sc);
+                nc.setServicoController(sc);
+                nc.setEmailRemetente(rs.getString("emailEnvio"));
+                System.out.println(sc.getId());
             }
-            Persist.setNc(nc);
+            cdb.getCon().close();
+            
+            Persist.getListNotificacao().add(nc);
         } catch (SQLException ex) {
             Logger.getLogger(NotificacaoModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void dismissNotificacao(NotificacaoController nc){
+        try {
+            cdb = new ConnectionDb();
+            String query ="update proposta set visualizado=true where fk_idServico="+nc.getServicoController().getId();
+            System.out.println(query);
+            cdb.insertQuery(query);
+            cdb.getCon().close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(NotificacaoModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

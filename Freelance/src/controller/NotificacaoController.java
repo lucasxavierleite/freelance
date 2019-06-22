@@ -13,15 +13,26 @@ import java.util.List;
  * @author daniel
  */
 public class NotificacaoController {
-    private List<ServicoController> servicoList = new ArrayList<>();
+    private String emailRemetente;
+    private ServicoController servicoController;
 
-    public List<ServicoController> getServicoList() {
-        return servicoList;
+    public ServicoController getServicoController() {
+        return servicoController;
     }
 
-    public void setServicoList(List<ServicoController> servicoList) {
-        this.servicoList = servicoList;
+    public void setServicoController(ServicoController servicoController) {
+        this.servicoController = servicoController;
     }
+
+    public String getEmailRemetente() {
+        return emailRemetente;
+    }
+
+    public void setEmailRemetente(String emailRemetente) {
+        this.emailRemetente = emailRemetente;
+    }
+    
+    
     
     
     

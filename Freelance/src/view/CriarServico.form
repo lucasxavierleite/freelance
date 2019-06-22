@@ -226,13 +226,18 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblDataEntrega">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Nome da Empresa:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNome">
+      <Properties>
         <Property name="text" type="java.lang.String" value="Data de Entrega"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtDataEntrega">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="" subtype="-1" type="1"/>
+          <Format format="d/M/yy" subtype="-1" type="1"/>
         </Property>
       </Properties>
     </Component>
@@ -318,5 +323,28 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Categorias"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCriar1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Criar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCriarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCancelar1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtValor1">
+    </Component>
   </SubComponents>
 </Form>

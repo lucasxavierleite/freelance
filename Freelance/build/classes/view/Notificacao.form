@@ -26,7 +26,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="descricaoScrollPane" alignment="0" max="32767" attributes="0"/>
@@ -43,6 +43,8 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Component id="entregaLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblRemetente" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -64,8 +66,6 @@
                       <Component id="contatarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="aceitarButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="maisButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,6 +87,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="entregaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="transporteCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRemetente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="descricaoScrollPane" min="-2" max="-2" attributes="0"/>
@@ -95,7 +96,6 @@
                   <Component id="descartarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="contatarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="aceitarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="maisButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -158,6 +158,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Descartar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descartarButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="contatarButton">
       <Properties>
@@ -168,14 +171,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceitar"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="maisButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ver mais &gt;"/>
-      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maisButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceitarButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRemetente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email do remetente:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
